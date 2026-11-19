@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Login Admin & Super Admin — SMAN 1 BUMI AGUNG</title>
+  <meta name="description" content="Halaman Login Administrator Portal Resmi & 23 Aplikasi Digital Terpadu SMAN 1 Bumi Agung, Kabupaten Way Kanan, Lampung." />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+            sans: ['"Inter"', 'sans-serif'],
+          },
+          colors: {
+            navy: '#0A3678',
+            skybrand: '#0095DA',
+            gold: '#FACC15',
+            goldhover: '#EAB308',
+            ink: '#0F172A',
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body { font-family: 'Inter', sans-serif; color: #0F172A; }
+    h1, h2, h3, h4, .font-heading { font-family: 'Plus Jakarta Sans', sans-serif; }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-[#0A3678] via-[#0A3678] to-[#0095DA] flex items-center justify-center p-4 sm:p-6 relative overflow-x-hidden">
+
+  <!-- Dekorasi Latar Belakang -->
+  <div class="fixed inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 24px 24px;"></div>
+  <div class="fixed -top-28 -right-28 w-96 h-96 rounded-full bg-[#0095DA]/30 blur-3xl pointer-events-none"></div>
+  <div class="fixed -bottom-28 -left-28 w-96 h-96 rounded-full bg-[#FACC15]/15 blur-3xl pointer-events-none"></div>
+
+  <!-- KARTU UTAMA LOGIN (SPLIT PANEL) -->
+  <div class="relative z-10 w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-white/20 overflow-hidden grid lg:grid-cols-12">
+
+    <!-- PANEL KIRI: IDENTITAS SEKOLAH -->
+    <div class="lg:col-span-5 bg-gradient-to-b from-[#0A3678] to-[#082A5E] text-white p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden">
+      <div class="absolute -right-16 -bottom-16 w-56 h-56 rounded-full bg-[#0095DA]/20 blur-2xl"></div>
+
+      <div class="space-y-6 relative z-10">
+        <!-- Logo & Nama Sekolah -->
+        <a href="index.html" class="inline-flex items-center gap-3 group">
+          <div id="login-logo-wrap" class="w-12 h-12 rounded-2xl bg-white p-1.5 shadow-lg flex items-center justify-center shrink-0 group-hover:scale-105 transition">
+            <svg class="w-9 h-9" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M32 4L56 14V31C56 46.5 45.6 56.8 32 60C18.4 56.8 8 46.5 8 31V14L32 4Z" fill="#0A3678"/>
+              <path d="M32 8L52 16.5V31C52 44.2 43.2 53.1 32 56C20.8 53.1 12 44.2 12 31V16.5L32 8Z" fill="#0095DA"/>
+              <path d="M32 16L41 25L32 46L23 25L32 16Z" fill="#FACC15"/>
+              <circle cx="32" cy="26" r="4" fill="#0A3678"/>
+            </svg>
+          </div>
+          <div>
+            <h2 id="login-school-name" class="font-heading font-extrabold text-base leading-tight text-white">SMAN 1 BUMI AGUNG</h2>
+            <p id="login-school-sub" class="text-xs text-[#FACC15] mt-0.5">Kabupaten Way Kanan, Lampung</p>
+          </div>
+        </a>
+
+        <div class="pt-2 space-y-3">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[11px] font-semibold text-[#FACC15]">
+            <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+            <span>Sistem Manajemen Konten & Portal</span>
+          </span>
+          <h1 class="font-heading font-extrabold text-2xl sm:text-3xl leading-snug">
+            Pusat Kendali <span class="text-[#FACC15]">23 Aplikasi</span> & Informasi Sekolah
+          </h1>
+          <p class="text-xs sm:text-sm text-white/80 leading-relaxed">
+            Masuk menggunakan akun Administrator atau Super Admin untuk mengelola profil sekolah, berita, halaman submenu, dan tautan layanan digital terpadu.
+          </p>
+        </div>
+      </div>
+
+      <!-- Info Legalitas & Bantuan -->
+      <div class="pt-8 mt-8 border-t border-white/15 space-y-3 relative z-10 text-xs">
+        <div class="flex items-center gap-2 text-white/80">
+          <i data-lucide="award" class="w-4 h-4 text-[#FACC15] shrink-0"></i>
+          <span>NPSN: <strong id="login-npsn" class="text-white">10806765</strong> • Akreditasi <strong id="login-akreditasi" class="text-white">A</strong></span>
+        </div>
+        <div class="flex items-center gap-2 text-white/80">
+          <i data-lucide="database" class="w-4 h-4 text-[#0095DA] shrink-0"></i>
+          <span>Terintegrasi Google Sheets & Apps Script</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL KANAN: FORMULIR LOGIN -->
+    <div class="lg:col-span-7 p-8 sm:p-10 flex flex-col justify-center bg-white">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="font-heading font-extrabold text-2xl text-[#0A3678]">Masuk ke Sistem</h2>
+          <p class="text-xs text-slate-500 mt-1">Pilih tingkat akses dan masukkan kredensial Anda.</p>
+        </div>
+        <a href="index.html" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs transition">
+          <i data-lucide="home" class="w-3.5 h-3.5 text-[#0A3678]"></i>
+          <span>Beranda</span>
+        </a>
+      </div>
+
+      <!-- Selector Role: Admin vs Super Admin -->
+      <div class="grid grid-cols-2 gap-2 p-1.5 rounded-2xl bg-slate-100 border border-slate-200/80 mb-5">
+        <button type="button" id="role-btn-admin" onclick="selectRole('Admin')" class="py-2.5 px-3 rounded-xl bg-white text-[#0A3678] shadow-sm font-heading font-bold text-xs flex items-center justify-center gap-2 transition">
+          <i data-lucide="user-cog" class="w-4 h-4 text-[#0095DA]"></i>
+          <span>Admin Sekolah</span>
+        </button>
+        <button type="button" id="role-btn-super" onclick="selectRole('Super Admin')" class="py-2.5 px-3 rounded-xl text-slate-600 hover:text-[#0A3678] font-heading font-bold text-xs flex items-center justify-center gap-2 transition">
+          <i data-lucide="shield" class="w-4 h-4 text-amber-500"></i>
+          <span>Super Admin</span>
+        </button>
+      </div>
+
+      <!-- Alert Pesan Error / Sukses -->
+      <div id="login-alert" class="hidden mb-4 p-3.5 rounded-xl text-xs font-medium flex items-start gap-2.5"></div>
+
+      <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
+        <input type="hidden" id="login-role" value="Admin" />
+
+        <div>
+          <label for="login-username" class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Username atau Email *</label>
+          <div class="relative">
+            <i data-lucide="user" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3"></i>
+            <input
+              type="text"
+              id="login-username"
+              required
+              autocomplete="username"
+              placeholder="Masukkan username atau email admin"
+              class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-sm focus:bg-white focus:outline-none focus:border-[#0095DA] transition"
+            />
+          </div>
+        </div>
+
+        <div>
+          <div class="flex items-center justify-between mb-1.5">
+            <label for="login-password" class="block text-xs font-bold text-slate-700 uppercase">Kata Sandi / PIN *</label>
+            <button type="button" onclick="openForgotModal()" class="text-xs font-semibold text-[#0095DA] hover:text-[#0A3678] transition">
+              Lupa kata sandi?
+            </button>
+          </div>
+          <div class="relative">
+            <i data-lucide="lock" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3"></i>
+            <input
+              type="password"
+              id="login-password"
+              required
+              autocomplete="current-password"
+              placeholder="••••••••"
+              class="w-full pl-10 pr-11 py-2.5 rounded-xl bg-slate-50 border border-slate-300 text-sm focus:bg-white focus:outline-none focus:border-[#0095DA] transition"
+            />
+            <button
+              type="button"
+              onclick="togglePassword()"
+              aria-label="Tampilkan atau sembunyikan kata sandi"
+              class="absolute right-3 top-2.5 p-1 rounded-lg text-slate-400 hover:text-[#0A3678] transition"
+            >
+              <i id="eye-icon" data-lucide="eye" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="flex items-center justify-between pt-1">
+          <label class="inline-flex items-center gap-2 cursor-pointer select-none">
+            <input type="checkbox" id="remember-me" class="w-4 h-4 rounded border-slate-300 text-[#0A3678] focus:ring-[#0095DA]" />
+            <span class="text-xs text-slate-600 font-medium">Ingat sesi login di perangkat ini</span>
+          </label>
+        </div>
+
+        <button
+          type="submit"
+          id="login-submit-btn"
+          class="w-full py-3.5 px-6 rounded-xl bg-[#0A3678] hover:bg-[#0095DA] text-white font-heading font-bold text-sm shadow-lg shadow-[#0A3678]/20 flex items-center justify-center gap-2 transition transform active:scale-[0.99]"
+        >
+          <i data-lucide="log-in" class="w-4 h-4 text-[#FACC15]"></i>
+          <span>Masuk ke Dashboard Admin</span>
+        </button>
+      </form>
+
+      <!-- Footer Info -->
+      <div class="mt-6 pt-5 border-t border-slate-100 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-400">
+        <span>&copy; 2026 SMAN 1 Bumi Agung</span>
+        <span id="backend-mode-badge" class="inline-flex items-center gap-1.5 font-medium text-slate-500">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span>Siap Autentikasi</span>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODAL LUPA KATA SANDI / BANTUAN OPERATOR
+       ===================================================================== -->
+  <div id="forgot-modal" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-sm p-4 flex items-center justify-center">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-7 shadow-2xl space-y-4">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+        <div class="flex items-center gap-2">
+          <div class="w-8 h-8 rounded-xl bg-[#0095DA]/10 text-[#0A3678] flex items-center justify-center">
+            <i data-lucide="key-round" class="w-4 h-4"></i>
+          </div>
+          <h3 class="font-heading font-bold text-base text-[#0A3678]">Pemulihan Akses Admin</h3>
+        </div>
+        <button onclick="closeForgotModal()" class="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <p class="text-xs text-slate-600 leading-relaxed">
+        Untuk menjaga keamanan data sekolah dan portal 23 aplikasi, pengaturan ulang kata sandi dilakukan melalui <strong>Super Admin / Tim IT SMAN 1 Bumi Agung</strong> atau langsung melalui sheet <code>Users / Admin</code> pada database Google Sheets sekolah.
+      </p>
+
+      <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs space-y-1">
+        <p class="font-bold text-[#0A3678]">Kredensial Uji Coba (Mode Offline/Lokal):</p>
+        <p class="text-slate-600">• Admin: <code class="font-mono bg-white px-1.5 py-0.5 rounded border">admin</code> / <code class="font-mono bg-white px-1.5 py-0.5 rounded border">admin123</code></p>
+        <p class="text-slate-600">• Super Admin: <code class="font-mono bg-white px-1.5 py-0.5 rounded border">superadmin</code> / <code class="font-mono bg-white px-1.5 py-0.5 rounded border">super123</code></p>
+      </div>
+
+      <div class="flex items-center gap-2 pt-1">
+        <a id="forgot-wa-btn" href="https://wa.me/6281272001234" target="_blank" rel="noopener" class="flex-1 py-2.5 px-4 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white font-heading font-bold text-xs flex items-center justify-center gap-2 transition">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>Hubungi Tim IT via WA</span>
+        </a>
+        <button type="button" onclick="closeForgotModal()" class="px-4 py-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-600 font-bold text-xs transition">
+          Tutup
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       JAVASCRIPT AUTHENTICATION ENGINE
+       ===================================================================== -->
+  <script>
+    // >>> TEMPELKAN URL WEB APP GOOGLE APPS SCRIPT YANG SAMA DENGAN index.html <<<
+    const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/PASTE_YOUR_WEB_APP_ID_HERE/exec';
+    const LOCAL_CACHE_KEY = 'sman1ba_public_cache_v1';
+    const ADMIN_SESSION_KEY = 'sman1ba_admin_session_v1';
+    const ADMIN_USER_KEY = 'sman1ba_admin_user_v1';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Jika sesi sudah aktif, langsung arahkan ke admin.html
+      const activeSession = sessionStorage.getItem(ADMIN_SESSION_KEY) || localStorage.getItem(ADMIN_SESSION_KEY);
+      if (activeSession) {
+        window.location.replace('admin.html');
+        return;
+      }
+
+      // 2. Sinkronkan identitas sekolah dari cache lokal jika tersedia
+      try {
+        const cached = localStorage.getItem(LOCAL_CACHE_KEY);
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          const p = parsed?.pengaturan;
+          if (p) {
+            if (p.nama_sekolah) document.getElementById('login-school-name').textContent = p.nama_sekolah;
+            if (p.kabupaten) document.getElementById('login-school-sub').textContent = p.kabupaten;
+            if (p.npsn) document.getElementById('login-npsn').textContent = p.npsn;
+            if (p.akreditasi) document.getElementById('login-akreditasi').textContent = p.akreditasi;
+            if (p.whatsapp) {
+              const waClean = String(p.whatsapp).replace(/[^0-9]/g, '');
+              document.getElementById('forgot-wa-btn').href = `https://wa.me/${waClean}?text=${encodeURIComponent('Halo Tim IT SMAN 1 Bumi Agung, saya membutuhkan bantuan reset akses Login Admin.')}`;
+            }
+            if (p.logo_url) {
+              document.getElementById('login-logo-wrap').innerHTML = `<img src="${convertDriveUrl(p.logo_url)}" alt="${p.nama_sekolah}" class="w-full h-full object-contain rounded-xl" />`;
+            }
+          }
+        }
+      } catch (e) {
+        console.warn('Cache sekolah dilewati:', e);
+      }
+
+      // 3. Indikator mode koneksi backend
+      const badge = document.getElementById('backend-mode-badge');
+      if (GAS_WEB_APP_URL.includes('PASTE_YOUR_WEB_APP_ID')) {
+        badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-amber-500"></span><span>Mode Lokal / Demo</span>`;
+      } else {
+        badge.innerHTML = `<span class="w-2 h-2 rounded-full bg-emerald-500"></span><span>Terhubung Cloud GAS</span>`;
+      }
+
+      lucide.createIcons();
+    });
+
+    function selectRole(role) {
+      document.getElementById('login-role').value = role;
+      const btnAdmin = document.getElementById('role-btn-admin');
+      const btnSuper = document.getElementById('role-btn-super');
+
+      if (role === 'Admin') {
+        btnAdmin.className = 'py-2.5 px-3 rounded-xl bg-white text-[#0A3678] shadow-sm font-heading font-bold text-xs flex items-center justify-center gap-2 transition';
+        btnSuper.className = 'py-2.5 px-3 rounded-xl text-slate-600 hover:text-[#0A3678] font-heading font-bold text-xs flex items-center justify-center gap-2 transition';
+      } else {
+        btnSuper.className = 'py-2.5 px-3 rounded-xl bg-white text-[#0A3678] shadow-sm font-heading font-bold text-xs flex items-center justify-center gap-2 transition';
+        btnAdmin.className = 'py-2.5 px-3 rounded-xl text-slate-600 hover:text-[#0A3678] font-heading font-bold text-xs flex items-center justify-center gap-2 transition';
+      }
+    }
+
+    function togglePassword() {
+      const input = document.getElementById('login-password');
+      const icon = document.getElementById('eye-icon');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.setAttribute('data-lucide', 'eye-off');
+      } else {
+        input.type = 'password';
+        icon.setAttribute('data-lucide', 'eye');
+      }
+      lucide.createIcons();
+    }
+
+    function showAlert(type, message) {
+      const el = document.getElementById('login-alert');
+      el.classList.remove('hidden', 'bg-rose-50', 'text-rose-700', 'border-rose-200', 'bg-emerald-50', 'text-emerald-700', 'border-emerald-200');
+      if (type === 'error') {
+        el.classList.add('bg-rose-50', 'text-rose-700', 'border', 'border-rose-200');
+        el.innerHTML = `<i data-lucide="alert-circle" class="w-4 h-4 shrink-0 mt-0.5"></i><span>${message}</span>`;
+      } else {
+        el.classList.add('bg-emerald-50', 'text-emerald-700', 'border', 'border-emerald-200');
+        el.innerHTML = `<i data-lucide="check-circle-2" class="w-4 h-4 shrink-0 mt-0.5"></i><span>${message}</span>`;
+      }
+      lucide.createIcons();
+    }
+
+    async function handleLogin(e) {
+      e.preventDefault();
+      const role = document.getElementById('login-role').value;
+      const username = document.getElementById('login-username').value.trim();
+      const password = document.getElementById('login-password').value.trim();
+      const remember = document.getElementById('remember-me').checked;
+      const btn = document.getElementById('login-submit-btn');
+
+      btn.disabled = true;
+      btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin"></i><span>Memverifikasi Akun...</span>`;
+      lucide.createIcons();
+
+      try {
+        // Mode Backend Google Apps Script
+        if (GAS_WEB_APP_URL && !GAS_WEB_APP_URL.includes('PASTE_YOUR_WEB_APP_ID')) {
+          const res = await fetch(GAS_WEB_APP_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ action: 'login', role, username, password })
+          });
+          const json = await res.json();
+
+          if (json && json.status === 'success') {
+            saveSessionAndRedirect(json.token || 'gas-auth-token', {
+              username,
+              role: json.role || role,
+              nama: json.nama || username
+            }, remember);
+            return;
+          } else {
+            showAlert('error', json.message || 'Username, kata sandi, atau hak akses tidak sesuai.');
+            return;
+          }
+        }
+
+        // Mode Lokal / Fallback saat URL GAS belum dikonfigurasi
+        const isAdminValid = role === 'Admin' && username === 'admin' && password === 'admin123';
+        const isSuperValid = role === 'Super Admin' && username === 'superadmin' && password === 'super123';
+
+        if (isAdminValid || isSuperValid) {
+          saveSessionAndRedirect('local-demo-token', {
+            username,
+            role,
+            nama: role === 'Super Admin' ? 'Super Administrator' : 'Admin Sekolah'
+          }, remember);
+        } else {
+          showAlert('error', 'Kredensial tidak cocok. Periksa kembali peran (Admin / Super Admin), username, dan kata sandi Anda.');
+        }
+      } catch (err) {
+        showAlert('error', 'Gagal terhubung ke server autentikasi: ' + err.message);
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = `<i data-lucide="log-in" class="w-4 h-4 text-[#FACC15]"></i><span>Masuk ke Dashboard Admin</span>`;
+        lucide.createIcons();
+      }
+    }
+
+    function saveSessionAndRedirect(token, userObj, remember) {
+      const storage = remember ? localStorage : sessionStorage;
+      storage.setItem(ADMIN_SESSION_KEY, token);
+      storage.setItem(ADMIN_USER_KEY, JSON.stringify(userObj));
+      showAlert('success', `Berhasil masuk sebagai ${userObj.role}. Mengalihkan ke Dashboard...`);
+      setTimeout(() => {
+        window.location.href = 'admin.html';
+      }, 650);
+    }
+
+    function openForgotModal() {
+      document.getElementById('forgot-modal').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function closeForgotModal() {
+      document.getElementById('forgot-modal').classList.add('hidden');
+    }
+
+    function convertDriveUrl(url) {
+      if (!url) return '';
+      const str = String(url).trim();
+      const match = str.match(/\/d\/([a-zA-Z0-9_-]+)/) || str.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+      if (str.includes('drive.google.com') && match && match[1]) {
+        return `https://lh3.googleusercontent.com/d/${match[1]}=s1200`;
+      }
+      return str;
+    }
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeForgotModal();
+    });
+  </script>
+</body>
+</html>
