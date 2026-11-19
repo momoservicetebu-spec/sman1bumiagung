@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SMAN 1 BUMI AGUNG — Portal Resmi & 23 Aplikasi Terpadu</title>
+  <meta name="description" content="Website Resmi dan Portal 23 Aplikasi Digital Terpadu SMAN 1 Bumi Agung, Kabupaten Way Kanan, Provinsi Lampung." />
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+            sans: ['"Inter"', 'sans-serif'],
+          },
+          colors: {
+            navy: '#0A3678',
+            skybrand: '#0095DA',
+            gold: '#FACC15',
+            goldhover: '#EAB308',
+            ink: '#0F172A',
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body { font-family: 'Inter', sans-serif; color: #0F172A; background-color: #FFFFFF; }
+    h1, h2, h3, h4, .font-heading { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #F8FAFC; }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 9999px; }
+    ::-webkit-scrollbar-thumb:hover { background: #0095DA; }
+
+    /* Floating Mega-Dropdown Animation */
+    .mega-dropdown {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(10px) scale(0.98);
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .nav-group:hover .mega-dropdown,
+    .nav-group.open .mega-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Mobile Accordion Smooth Height */
+    .accordion-content {
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.28s ease;
+    }
+    .accordion-item.active .accordion-content {
+      grid-template-rows: 1fr;
+    }
+    .accordion-inner { overflow: hidden; }
+
+    /* App Card Glow */
+    .app-card {
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .app-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 30px -10px rgba(0, 149, 218, 0.22), 0 0 0 1px rgba(0, 149, 218, 0.35);
+    }
+
+    /* Prose Styling for Dynamic Pages */
+    .article-prose h2 { font-size: 1.5rem; font-weight: 700; color: #0A3678; margin-top: 1.5rem; margin-bottom: 0.75rem; }
+    .article-prose h3 { font-size: 1.25rem; font-weight: 700; color: #0A3678; margin-top: 1.25rem; margin-bottom: 0.5rem; }
+    .article-prose p { margin-bottom: 1rem; line-height: 1.75; color: #334155; }
+    .article-prose ul { list-style-type: disc; padding-left: 1.5rem; margin-bottom: 1rem; color: #334155; }
+    .article-prose ol { list-style-type: decimal; padding-left: 1.5rem; margin-bottom: 1rem; color: #334155; }
+    .article-prose li { margin-bottom: 0.4rem; }
+  </style>
+</head>
+<body class="bg-white text-ink antialiased pb-20 md:pb-0">
+
+  <!-- =====================================================================
+       STICKY GLASS HEADER & DESKTOP FLOATING MEGA-MENU
+       ===================================================================== -->
+  <header id="main-header" class="sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-slate-200/80 transition-all duration-300">
+    <!-- Top Info Bar (Desktop) -->
+    <div class="hidden lg:block bg-[#0A3678] text-white/90 text-xs py-1.5">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
+        <div class="flex items-center gap-5">
+          <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-[#FACC15]"></i> <span id="topbar-alamat">Kec. Bumi Agung, Kab. Way Kanan, Lampung</span></span>
+          <span class="flex items-center gap-1.5"><i data-lucide="award" class="w-3.5 h-3.5 text-[#FACC15]"></i> NPSN: <strong id="topbar-npsn">10806765</strong> • Akreditasi <strong id="topbar-akreditasi">A</strong></span>
+        </div>
+        <div class="flex items-center gap-4">
+          <a id="topbar-wa" href="https://wa.me/6281272001234" target="_blank" class="hover:text-[#FACC15] transition flex items-center gap-1">
+            <i data-lucide="phone-call" class="w-3.5 h-3.5 text-[#FACC15]"></i> Layanan Informasi
+          </a>
+          <span class="text-white/30">|</span>
+          <a href="admin.html" class="hover:text-[#FACC15] transition flex items-center gap-1 font-medium">
+            <i data-lucide="lock" class="w-3.5 h-3.5 text-[#FACC15]"></i> Login Admin
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16 md:h-20">
+        <!-- Brand Identity -->
+        <a href="#beranda" onclick="navigateToHome(event)" class="flex items-center gap-3 group shrink-0">
+          <div id="header-logo-wrap" class="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-[#0A3678] to-[#0095DA] p-0.5 shadow-md group-hover:scale-105 transition">
+            <div class="w-full h-full bg-white rounded-[10px] flex items-center justify-center overflow-hidden">
+              <!-- Official Styled Vector Emblem Default -->
+              <svg class="w-9 h-9" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M32 4L56 14V31C56 46.5 45.6 56.8 32 60C18.4 56.8 8 46.5 8 31V14L32 4Z" fill="#0A3678"/>
+                <path d="M32 8L52 16.5V31C52 44.2 43.2 53.1 32 56C20.8 53.1 12 44.2 12 31V16.5L32 8Z" fill="#0095DA"/>
+                <path d="M32 16L41 25L32 46L23 25L32 16Z" fill="#FACC15"/>
+                <circle cx="32" cy="26" r="4" fill="#0A3678"/>
+              </svg>
+            </div>
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span id="header-school-name" class="font-heading font-extrabold text-base md:text-lg tracking-tight text-[#0A3678] leading-none">SMAN 1 BUMI AGUNG</span>
+            </div>
+            <p id="header-school-sub" class="text-[11px] md:text-xs font-medium text-slate-500 mt-1">Kabupaten Way Kanan, Lampung</p>
+          </div>
+        </a>
+
+        <!-- Desktop Dynamic Menu -->
+        <nav id="desktop-nav" class="hidden xl:flex items-center gap-1">
+          <!-- Rendered dynamically by JS -->
+        </nav>
+
+        <!-- Right Actions (Desktop CTA + Mobile Hamburger) -->
+        <div class="flex items-center gap-2.5">
+          <button onclick="openSearchModal()" aria-label="Cari Cepat" class="hidden sm:flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 text-slate-600 hover:text-[#0A3678] hover:border-[#0095DA] hover:bg-slate-50 transition">
+            <i data-lucide="search" class="w-4 h-4"></i>
+          </button>
+
+          <a href="#portal-aplikasi" onclick="navigateToPortal(event)" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-[#FACC15] hover:bg-[#EAB308] text-[#0F172A] font-heading font-bold text-xs md:text-sm shadow-sm hover:shadow transition">
+            <i data-lucide="layout-grid" class="w-4 h-4"></i>
+            <span>Portal 23 Aplikasi</span>
+          </a>
+
+          <a href="admin.html" title="Login Admin / Super Admin" class="hidden xl:flex items-center justify-center w-10 h-10 rounded-xl bg-slate-100 hover:bg-[#0A3678] text-slate-600 hover:text-white transition">
+            <i data-lucide="lock" class="w-4 h-4"></i>
+          </a>
+
+          <!-- Mobile & Tablet Slide-Over Trigger -->
+          <button onclick="toggleMobileSidebar(true)" aria-label="Buka Menu" class="xl:hidden flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-[#0A3678] text-white font-medium text-sm shadow-md hover:bg-[#0095DA] transition">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+            <span class="hidden sm:inline">Menu</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- =====================================================================
+       MODERN GLASSMORPHISM SLIDE-OVER SIDEBAR (MOBILE & TABLET)
+       ===================================================================== -->
+  <div id="mobile-sidebar-backdrop" onclick="toggleMobileSidebar(false)" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300"></div>
+
+  <aside id="mobile-sidebar" class="fixed top-0 right-0 bottom-0 z-50 w-[86%] max-w-sm translate-x-full transition-transform duration-300 ease-out flex flex-col bg-gradient-to-b from-[#0A3678]/95 via-[#0A3678]/92 to-[#0095DA]/95 backdrop-blur-2xl text-white shadow-2xl border-l border-white/15">
+    <!-- Sidebar Identity Header -->
+    <div class="p-5 border-b border-white/15 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-11 h-11 rounded-xl bg-white p-1.5 shadow-lg flex items-center justify-center shrink-0">
+          <svg class="w-8 h-8" viewBox="0 0 64 64" fill="none">
+            <path d="M32 4L56 14V31C56 46.5 45.6 56.8 32 60C18.4 56.8 8 46.5 8 31V14L32 4Z" fill="#0A3678"/>
+            <path d="M32 8L52 16.5V31C52 44.2 43.2 53.1 32 56C20.8 53.1 12 44.2 12 31V16.5L32 8Z" fill="#0095DA"/>
+            <path d="M32 16L41 25L32 46L23 25L32 16Z" fill="#FACC15"/>
+          </svg>
+        </div>
+        <div>
+          <span class="inline-block px-2 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider bg-[#FACC15] text-[#0F172A] mb-1">Portal Digital Sekolah</span>
+          <h2 id="sidebar-school-name" class="font-heading font-bold text-sm leading-tight text-white">SMAN 1 BUMI AGUNG</h2>
+        </div>
+      </div>
+      <button onclick="toggleMobileSidebar(false)" aria-label="Tutup Menu" class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Scrollable Accordion Navigation -->
+    <div class="flex-1 overflow-y-auto px-4 py-4 space-y-1.5" id="mobile-nav-container">
+      <!-- Rendered dynamically by JS -->
+    </div>
+
+    <!-- Sidebar Quick Shortcuts & Admin Lock -->
+    <div class="p-4 border-t border-white/15 bg-[#0A3678]/60 space-y-2.5">
+      <button onclick="toggleMobileSidebar(false); navigateToPortal(event);" class="w-full py-3 px-4 rounded-xl bg-[#FACC15] hover:bg-[#EAB308] text-[#0F172A] font-heading font-bold text-sm flex items-center justify-center gap-2 shadow-lg transition">
+        <i data-lucide="layout-grid" class="w-4 h-4"></i>
+        <span>Portal 23 Aplikasi Sekolah</span>
+      </button>
+
+      <div class="flex items-center gap-2">
+        <a id="sidebar-wa-btn" href="https://wa.me/6281272001234" target="_blank" class="flex-1 py-2.5 px-3 rounded-xl bg-emerald-500/90 hover:bg-emerald-500 text-white font-semibold text-xs flex items-center justify-center gap-1.5 transition">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          <span>WhatsApp Sekolah</span>
+        </a>
+        <a href="admin.html" class="py-2.5 px-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white/90 text-xs font-medium flex items-center gap-1.5 transition" title="Login Admin">
+          <i data-lucide="lock" class="w-3.5 h-3.5 text-[#FACC15]"></i>
+          <span>Admin</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+
+  <!-- =====================================================================
+       MAIN CONTENT AREA (BERANDA + PORTAL + HALAMAN DINAMIS)
+       ===================================================================== -->
+  <main id="app-root">
+    <!-- VIEW 1: BERANDA & PORTAL 23 APLIKASI -->
+    <div id="view-home">
+      <!-- HERO SECTION -->
+      <section class="relative overflow-hidden bg-gradient-to-br from-[#0A3678] via-[#0A3678] to-[#0095DA] text-white">
+        <!-- Decorative Pattern -->
+        <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 24px 24px;"></div>
+        <div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-[#0095DA]/30 blur-3xl"></div>
+        <div class="absolute -left-24 bottom-0 w-80 h-80 rounded-full bg-[#FACC15]/15 blur-3xl"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-22 lg:py-24">
+          <div class="grid lg:grid-cols-12 gap-10 items-center">
+            <div class="lg:col-span-7 space-y-6">
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs md:text-sm font-medium text-[#FACC15]">
+                <span class="w-2 h-2 rounded-full bg-[#FACC15] animate-ping"></span>
+                <span>Portal Resmi & Ekosistem Digital Sekolah — Way Kanan, Lampung</span>
+              </div>
+
+              <h1 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl leading-tight tracking-tight">
+                Selamat Datang di <span class="text-[#FACC15]" id="hero-school-name">SMAN 1 BUMI AGUNG</span>
+              </h1>
+
+              <p id="hero-slogan" class="text-base md:text-lg text-white/90 leading-relaxed max-w-2xl">
+                Unggul dalam Prestasi, Berkarakter Profil Pelajar Pancasila, dan Berdaya Saing Digital di Kabupaten Way Kanan, Provinsi Lampung.
+              </p>
+
+              <div class="flex flex-wrap items-center gap-3.5 pt-2">
+                <a href="#portal-aplikasi" onclick="navigateToPortal(event)" class="px-6 py-3.5 rounded-xl bg-[#FACC15] hover:bg-[#EAB308] text-[#0F172A] font-heading font-bold text-sm md:text-base shadow-xl shadow-black/20 flex items-center gap-2.5 transition transform hover:-translate-y-0.5">
+                  <i data-lucide="layout-grid" class="w-5 h-5"></i>
+                  <span>Buka Portal 23 Aplikasi</span>
+                </a>
+                <button onclick="openPage('identitas-sekolah')" class="px-6 py-3.5 rounded-xl bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/25 text-white font-semibold text-sm md:text-base flex items-center gap-2 transition">
+                  <span>Profil Sekolah</span>
+                  <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Statistik Sekolah Card -->
+            <div class="lg:col-span-5">
+              <div class="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-6 md:p-7 shadow-2xl">
+                <div class="flex items-center justify-between pb-4 mb-5 border-b border-white/15">
+                  <div>
+                    <p class="text-xs uppercase tracking-wider text-[#FACC15] font-bold">Data Pokok Sekolah</p>
+                    <h2 class="font-heading font-bold text-lg text-white">Statistik SMAN 1 Bumi Agung</h2>
+                  </div>
+                  <div class="w-10 h-10 rounded-xl bg-[#FACC15] text-[#0F172A] flex items-center justify-center font-bold">
+                    <i data-lucide="bar-chart-2" class="w-5 h-5"></i>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                  <div class="bg-white/10 rounded-2xl p-4 border border-white/10">
+                    <div class="flex items-center gap-2 text-[#FACC15] mb-1">
+                      <i data-lucide="users" class="w-4 h-4"></i>
+                      <span class="text-xs font-semibold uppercase">Peserta Didik</span>
+                    </div>
+                    <p id="stat-siswa" class="font-heading font-extrabold text-2xl md:text-3xl text-white">785</p>
+                    <p class="text-xs text-white/70 mt-0.5">Siswa Aktif</p>
+                  </div>
+
+                  <div class="bg-white/10 rounded-2xl p-4 border border-white/10">
+                    <div class="flex items-center gap-2 text-[#FACC15] mb-1">
+                      <i data-lucide="user-check" class="w-4 h-4"></i>
+                      <span class="text-xs font-semibold uppercase">Pendidik & Tendik</span>
+                    </div>
+                    <p id="stat-guru" class="font-heading font-extrabold text-2xl md:text-3xl text-white">54</p>
+                    <p class="text-xs text-white/70 mt-0.5">Guru & Staf TU</p>
+                  </div>
+
+                  <div class="bg-white/10 rounded-2xl p-4 border border-white/10">
+                    <div class="flex items-center gap-2 text-[#FACC15] mb-1">
+                      <i data-lucide="trophy" class="w-4 h-4"></i>
+                      <span class="text-xs font-semibold uppercase">Prestasi</span>
+                    </div>
+                    <p id="stat-prestasi" class="font-heading font-extrabold text-2xl md:text-3xl text-white">128</p>
+                    <p class="text-xs text-white/70 mt-0.5">Kejuaraan Diraih</p>
+                  </div>
+
+                  <div class="bg-white/10 rounded-2xl p-4 border border-white/10">
+                    <div class="flex items-center gap-2 text-[#FACC15] mb-1">
+                      <i data-lucide="graduation-cap" class="w-4 h-4"></i>
+                      <span class="text-xs font-semibold uppercase">Jejaring Alumni</span>
+                    </div>
+                    <p id="stat-alumni" class="font-heading font-extrabold text-2xl md:text-3xl text-white">3.450+</p>
+                    <p class="text-xs text-white/70 mt-0.5">Lulusan Tersebar</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           PORTAL 23 APLIKASI TERPADU (LAUNCHER UTAMA)
+           ===================================================================== -->
+      <section id="portal-aplikasi" class="py-16 md:py-20 bg-[#F8FAFC] border-b border-slate-200/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-10">
+            <div>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#0095DA]/10 text-[#0A3678] font-bold text-xs uppercase tracking-wider mb-3">
+                <i data-lucide="cpu" class="w-3.5 h-3.5 text-[#0095DA]"></i> Single Sign-On & Layanan Terintegrasi
+              </span>
+              <h2 class="font-heading font-extrabold text-2xl md:text-4xl text-[#0A3678]">
+                Portal <span id="app-count-badge">23</span> Aplikasi Terpadu
+              </h2>
+              <p class="text-slate-600 mt-2 max-w-2xl text-sm md:text-base">
+                Akses cepat seluruh layanan digital Siswa, Akademik, Perangkat Ajar Guru, dan Manajemen Tata Usaha SMAN 1 Bumi Agung dalam satu pintu.
+              </p>
+            </div>
+
+            <!-- Live Search Aplikasi -->
+            <div class="w-full lg:w-80">
+              <div class="relative">
+                <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
+                <input
+                  type="text"
+                  id="app-search-input"
+                  oninput="filterApps()"
+                  placeholder="Cari PPDB, E-Raport, Soal, Sarpras..."
+                  class="w-full pl-10 pr-4 py-3 rounded-xl bg-white border border-slate-200 text-sm focus:outline-none focus:border-[#0095DA] focus:ring-2 focus:ring-[#0095DA]/20 shadow-sm"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Tab Filter Kategori -->
+          <div class="flex items-center gap-2 overflow-x-auto pb-3 mb-7 no-scrollbar" id="app-category-tabs">
+            <button onclick="setAppCategory('Semua')" data-cat="Semua" class="app-tab active px-4 py-2.5 rounded-xl font-semibold text-xs md:text-sm whitespace-nowrap bg-[#0A3678] text-white shadow-sm transition">
+              Semua Layanan
+            </button>
+            <button onclick="setAppCategory('Siswa & Akademik')" data-cat="Siswa & Akademik" class="app-tab px-4 py-2.5 rounded-xl font-semibold text-xs md:text-sm whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:border-[#0095DA] transition">
+              Siswa & Akademik
+            </button>
+            <button onclick="setAppCategory('Guru & Perangkat Ajar')" data-cat="Guru & Perangkat Ajar" class="app-tab px-4 py-2.5 rounded-xl font-semibold text-xs md:text-sm whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:border-[#0095DA] transition">
+              Guru & Perangkat Ajar
+            </button>
+            <button onclick="setAppCategory('Manajemen & TU')" data-cat="Manajemen & TU" class="app-tab px-4 py-2.5 rounded-xl font-semibold text-xs md:text-sm whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:border-[#0095DA] transition">
+              Manajemen, Sarpras & TU
+            </button>
+          </div>
+
+          <!-- Grid 23 Aplikasi -->
+          <div id="apps-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            <!-- Rendered dynamically by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           SAMBUTAN KEPALA SEKOLAH
+           ===================================================================== -->
+      <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="bg-gradient-to-br from-[#F8FAFC] to-white border border-slate-200/80 rounded-3xl p-6 md:p-10 shadow-sm">
+            <div class="grid md:grid-cols-12 gap-8 items-center">
+              <div class="md:col-span-4 lg:col-span-3 flex flex-col items-center text-center">
+                <div class="relative">
+                  <div class="w-44 h-44 md:w-48 md:h-48 rounded-2xl overflow-hidden border-4 border-white shadow-xl bg-slate-200">
+                    <img id="kepsek-photo" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" alt="Kepala Sekolah SMAN 1 Bumi Agung" class="w-full h-full object-cover" />
+                  </div>
+                  <span class="absolute -bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-[#FACC15] text-[#0F172A] font-heading font-bold text-xs shadow whitespace-nowrap">
+                    Kepala Sekolah
+                  </span>
+                </div>
+                <h3 id="kepsek-name" class="font-heading font-bold text-base text-[#0A3678] mt-5">Drs. H. Ahmad Fauzi, M.Pd.</h3>
+                <p class="text-xs text-slate-500">SMAN 1 Bumi Agung</p>
+              </div>
+
+              <div class="md:col-span-8 lg:col-span-9 space-y-4">
+                <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-[#0095DA]">
+                  <i data-lucide="quote" class="w-4 h-4"></i> Prakata Pimpinan Sekolah
+                </span>
+                <h2 class="font-heading font-extrabold text-2xl md:text-3xl text-[#0A3678]">
+                  Mewujudkan Ekosistem Pendidikan Unggul & Berkarakter di Way Kanan
+                </h2>
+                <p id="kepsek-message" class="text-slate-600 leading-relaxed text-sm md:text-base">
+                  Assalamu’alaikum Warahmatullahi Wabarakatuh. Puji syukur ke hadirat Allah SWT atas terwujudnya Portal Digital Resmi SMAN 1 Bumi Agung, Kabupaten Way Kanan...
+                </p>
+                <div class="pt-2 flex flex-wrap gap-3">
+                  <button onclick="openPage('visi-misi')" class="px-4 py-2 rounded-xl bg-[#0A3678] hover:bg-[#0095DA] text-white text-xs md:text-sm font-semibold transition">
+                    Lihat Visi & Misi
+                  </button>
+                  <button onclick="openPage('struktur-organisasi')" class="px-4 py-2 rounded-xl border border-slate-300 hover:border-[#0A3678] text-slate-700 text-xs md:text-sm font-semibold transition">
+                    Struktur Organisasi
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =====================================================================
+           BERITA & PENGUMUMAN TERBARU
+           ===================================================================== -->
+      <section id="berita-terbaru" class="py-16 bg-[#F8FAFC] border-t border-slate-200/70">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-[#0095DA]">Warta & Informasi Publik</span>
+              <h2 class="font-heading font-extrabold text-2xl md:text-3xl text-[#0A3678] mt-1">Berita & Pengumuman Sekolah</h2>
+            </div>
+            <button onclick="openAllNewsModal()" class="inline-flex items-center gap-1.5 text-sm font-bold text-[#0A3678] hover:text-[#0095DA] transition">
+              <span>Lihat Semua Arsip Berita</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+
+          <div id="news-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Rendered dynamically by JS -->
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- =====================================================================
+         VIEW 2: HALAMAN SUBMENU DINAMIS (PROFIL, AKADEMIK, KESISWAAN, HUBUNGI KAMI)
+         ===================================================================== -->
+    <div id="view-page" class="hidden py-10 md:py-14 bg-[#F8FAFC] min-h-[70vh]">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Breadcrumb -->
+        <nav class="flex items-center gap-2 text-xs md:text-sm text-slate-500 mb-6 flex-wrap">
+          <button onclick="navigateToHome(event)" class="hover:text-[#0A3678] font-medium flex items-center gap-1">
+            <i data-lucide="home" class="w-3.5 h-3.5"></i> Beranda
+          </button>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+          <span id="page-breadcrumb-parent" class="font-semibold text-[#0095DA]">Profil Sekolah</span>
+          <i data-lucide="chevron-right" class="w-4 h-4 text-slate-400"></i>
+          <span id="page-breadcrumb-title" class="text-slate-700 font-medium">Identitas Sekolah</span>
+        </nav>
+
+        <div class="grid lg:grid-cols-12 gap-8">
+          <!-- Konten Utama Halaman -->
+          <article class="lg:col-span-8 bg-white rounded-3xl border border-slate-200/80 shadow-sm overflow-hidden">
+            <div id="page-hero-img-wrap" class="w-full h-56 sm:h-72 md:h-80 bg-slate-100 overflow-hidden">
+              <img id="page-hero-img" src="" alt="" class="w-full h-full object-cover" />
+            </div>
+
+            <div class="p-6 sm:p-8 md:p-10">
+              <div class="flex flex-wrap items-center gap-3 text-xs text-slate-500 mb-3">
+                <span id="page-category-pill" class="px-3 py-1 rounded-full bg-[#0A3678]/10 text-[#0A3678] font-bold">PROFIL SEKOLAH</span>
+                <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5"></i> Diperbarui: <span id="page-updated-at">-</span></span>
+                <span class="flex items-center gap-1"><i data-lucide="user" class="w-3.5 h-3.5"></i> Oleh: <span id="page-updated-by">Admin</span></span>
+              </div>
+
+              <h1 id="page-title" class="font-heading font-extrabold text-2xl sm:text-3xl md:text-4xl text-[#0A3678] mb-6 leading-tight">
+                Judul Halaman
+              </h1>
+
+              <div id="page-content" class="article-prose text-base">
+                <!-- HTML Content from Google Sheets -->
+              </div>
+
+              <!-- Interactive Contact Form (Auto-shown on Pengaduan / Kerja Sama pages) -->
+              <div id="contact-form-wrapper" class="hidden mt-10 pt-8 border-t border-slate-200">
+                <div class="bg-[#F8FAFC] rounded-2xl p-6 border border-slate-200">
+                  <h3 id="contact-form-heading" class="font-heading font-bold text-xl text-[#0A3678] mb-1">Formulir Layanan Online</h3>
+                  <p class="text-sm text-slate-600 mb-5">Pesan Anda akan langsung masuk ke Kotak Masuk Dashboard Admin SMAN 1 Bumi Agung.</p>
+
+                  <form id="public-contact-form" onsubmit="submitPublicContact(event)" class="space-y-4">
+                    <input type="hidden" id="contact-jenis" value="Pengaduan" />
+                    <div class="grid sm:grid-cols-2 gap-4">
+                      <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Nama Lengkap / Instansi *</label>
+                        <input type="text" id="contact-nama" required placeholder="Contoh: Budi Santoso / Universitas..." class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-sm focus:outline-none focus:border-[#0095DA]" />
+                      </div>
+                      <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Nomor WhatsApp / Email *</label>
+                        <input type="text" id="contact-kontak" required placeholder="0812xxxxxxxx / email@domain.com" class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-sm focus:outline-none focus:border-[#0095DA]" />
+                      </div>
+                    </div>
+                    <div>
+                      <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Perihal / Subjek *</label>
+                      <input type="text" id="contact-subjek" required placeholder="Tuliskan pokok pesan Anda" class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-sm focus:outline-none focus:border-[#0095DA]" />
+                    </div>
+                    <div>
+                      <label class="block text-xs font-bold text-slate-700 uppercase mb-1.5">Isi Pesan Lengkap *</label>
+                      <textarea id="contact-pesan" rows="4" required placeholder="Jelaskan detail aspirasi, pengaduan, atau permohonan kerja sama..." class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-300 text-sm focus:outline-none focus:border-[#0095DA]"></textarea>
+                    </div>
+                    <button type="submit" id="contact-submit-btn" class="px-6 py-3 rounded-xl bg-[#0A3678] hover:bg-[#0095DA] text-white font-heading font-bold text-sm flex items-center gap-2 transition shadow">
+                      <i data-lucide="send" class="w-4 h-4"></i>
+                      <span>Kirim Pesan Sekarang</span>
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Sidebar Navigasi Kategori Terkait -->
+          <aside class="lg:col-span-4 space-y-6">
+            <div class="bg-white rounded-3xl border border-slate-200/80 p-6 shadow-sm">
+              <h3 id="sidebar-related-title" class="font-heading font-bold text-base text-[#0A3678] pb-3 mb-4 border-b border-slate-100 flex items-center gap-2">
+                <i data-lucide="folder-open" class="w-4 h-4 text-[#0095DA]"></i>
+                <span>Menu Terkait</span>
+              </h3>
+              <div id="sidebar-related-links" class="space-y-1.5">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+            <div class="bg-gradient-to-br from-[#0A3678] to-[#0095DA] rounded-3xl p-6 text-white shadow-lg">
+              <span class="px-2.5 py-1 rounded-full bg-[#FACC15] text-[#0F172A] font-bold text-[11px] uppercase">Akses Cepat</span>
+              <h4 class="font-heading font-bold text-lg mt-3">Portal 23 Aplikasi Sekolah</h4>
+              <p class="text-xs text-white/85 mt-1.5 leading-relaxed">
+                Masuk ke layanan LMS, CBT, E-Raport, PPDB, dan administrasi sekolah secara terpadu.
+              </p>
+              <button onclick="navigateToPortal(event)" class="mt-4 w-full py-2.5 px-4 rounded-xl bg-[#FACC15] hover:bg-[#EAB308] text-[#0F172A] font-heading font-bold text-xs flex items-center justify-center gap-2 transition">
+                <i data-lucide="layout-grid" class="w-4 h-4"></i>
+                <span>Buka Launcher Aplikasi</span>
+              </button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- =====================================================================
+       FOOTER RESMI SEKOLAH
+       ===================================================================== -->
+  <footer class="bg-[#0A3678] text-white pt-14 pb-24 md:pb-12 border-t border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-10 border-b border-white/15">
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-11 h-11 rounded-xl bg-white p-1.5 flex items-center justify-center">
+              <svg class="w-8 h-8" viewBox="0 0 64 64" fill="none">
+                <path d="M32 4L56 14V31C56 46.5 45.6 56.8 32 60C18.4 56.8 8 46.5 8 31V14L32 4Z" fill="#0A3678"/>
+                <path d="M32 8L52 16.5V31C52 44.2 43.2 53.1 32 56C20.8 53.1 12 44.2 12 31V16.5L32 8Z" fill="#0095DA"/>
+                <path d="M32 16L41 25L32 46L23 25L32 16Z" fill="#FACC15"/>
+              </svg>
+            </div>
+            <div>
+              <h3 id="footer-school-name" class="font-heading font-extrabold text-lg text-white">SMAN 1 BUMI AGUNG</h3>
+              <p class="text-xs text-[#FACC15]">Kabupaten Way Kanan, Provinsi Lampung</p>
+            </div>
+          </div>
+          <p id="footer-alamat" class="text-sm text-white/80 leading-relaxed max-w-md">
+            Jl. Pendidikan No. 01, Kec. Bumi Agung, Kab. Way Kanan, Lampung 34763. Pusat keunggulan pendidikan menengah atas berbasis karakter dan teknologi digital.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="font-heading font-bold text-sm uppercase tracking-wider text-[#FACC15] mb-4">Tautan Utama</h4>
+          <ul class="space-y-2.5 text-sm text-white/80">
+            <li><button onclick="openPage('identitas-sekolah')" class="hover:text-[#FACC15] transition">Identitas & Profil Sekolah</button></li>
+            <li><button onclick="openPage('kurikulum')" class="hover:text-[#FACC15] transition">Kurikulum & Akademik</button></li>
+            <li><button onclick="openPage('ekstrakurikuler')" class="hover:text-[#FACC15] transition">Kesiswaan & Ekstrakurikuler</button></li>
+            <li><button onclick="navigateToPortal(event)" class="hover:text-[#FACC15] transition">Portal 23 Aplikasi Terpadu</button></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="font-heading font-bold text-sm uppercase tracking-wider text-[#FACC15] mb-4">Layanan & Kontak</h4>
+          <ul class="space-y-2.5 text-sm text-white/80">
+            <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-[#FACC15]"></i> <span id="footer-email">info@sman1bumiagung.sch.id</span></li>
+            <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-[#FACC15]"></i> <span id="footer-wa-text">+62 812-7200-1234</span></li>
+            <li><button onclick="openPage('pengaduan')" class="hover:text-[#FACC15] transition flex items-center gap-2"><i data-lucide="message-square" class="w-4 h-4 text-[#FACC15]"></i> Layanan Pengaduan</button></li>
+            <li><a href="admin.html" class="hover:text-[#FACC15] transition flex items-center gap-2 pt-1 text-white/60"><i data-lucide="lock" class="w-3.5 h-3.5"></i> Dashboard Admin</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-white/60 gap-3">
+        <p>&copy; 2026 <strong class="text-white">SMAN 1 BUMI AGUNG</strong> — Kabupaten Way Kanan, Lampung. Hak Cipta Dilindungi.</p>
+        <p>Sistem Informasi Sekolah & Portal 23 Aplikasi Terpadu</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- =====================================================================
+       BOTTOM QUICK BAR (SMARTPHONE ONLY)
+       ===================================================================== -->
+  <nav aria-label="Navigasi Cepat HP" class="md:hidden fixed bottom-3 inset-x-3 z-40 rounded-2xl bg-[#0A3678]/95 backdrop-blur-xl text-white shadow-2xl border border-white/15 px-2 py-2">
+    <div class="grid grid-cols-4 gap-1 text-center">
+      <button onclick="navigateToHome(event)" class="flex flex-col items-center justify-center py-1.5 rounded-xl hover:bg-white/10 active:bg-white/15 transition">
+        <i data-lucide="home" class="w-5 h-5 text-[#FACC15]"></i>
+        <span class="text-[10px] font-semibold mt-1">Beranda</span>
+      </button>
+      <button onclick="navigateToPortal(event)" class="flex flex-col items-center justify-center py-1.5 rounded-xl hover:bg-white/10 active:bg-white/15 transition">
+        <i data-lucide="layout-grid" class="w-5 h-5 text-[#0095DA]"></i>
+        <span class="text-[10px] font-semibold mt-1">23 Aplikasi</span>
+      </button>
+      <button onclick="openSearchModal()" class="flex flex-col items-center justify-center py-1.5 rounded-xl hover:bg-white/10 active:bg-white/15 transition">
+        <i data-lucide="search" class="w-5 h-5 text-white/90"></i>
+        <span class="text-[10px] font-semibold mt-1">Cari Cepat</span>
+      </button>
+      <button onclick="toggleMobileSidebar(true)" class="flex flex-col items-center justify-center py-1.5 rounded-xl hover:bg-white/10 active:bg-white/15 transition">
+        <i data-lucide="menu" class="w-5 h-5 text-[#FACC15]"></i>
+        <span class="text-[10px] font-semibold mt-1">Menu</span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- =====================================================================
+       MODAL DETAIL BERITA & MODAL PENCARIAN CEPAT
+       ===================================================================== -->
+  <div id="news-modal" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-sm overflow-y-auto p-4 flex items-center justify-center">
+    <div class="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl my-8 animate-fadeIn">
+      <div class="relative h-60 sm:h-72 bg-slate-200">
+        <img id="modal-news-img" src="" alt="" class="w-full h-full object-cover" />
+        <button onclick="closeNewsModal()" class="absolute top-4 right-4 w-10 h-10 rounded-full bg-slate-900/70 text-white hover:bg-[#0A3678] flex items-center justify-center transition">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div class="p-6 sm:p-8">
+        <div class="flex items-center gap-3 text-xs text-slate-500 mb-2">
+          <span class="px-2.5 py-1 rounded-full bg-[#0095DA]/10 text-[#0A3678] font-bold">Berita Sekolah</span>
+          <span id="modal-news-date"></span>
+          <span>•</span>
+          <span id="modal-news-author"></span>
+        </div>
+        <h2 id="modal-news-title" class="font-heading font-extrabold text-xl sm:text-2xl text-[#0A3678] mb-4"></h2>
+        <div id="modal-news-body" class="article-prose text-sm sm:text-base max-h-[50vh] overflow-y-auto pr-1"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Search Modal -->
+  <div id="search-modal" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-sm p-4 flex items-start justify-center pt-16 sm:pt-24">
+    <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl border border-slate-200">
+      <div class="p-4 border-b border-slate-100 flex items-center gap-3">
+        <i data-lucide="search" class="w-5 h-5 text-[#0095DA]"></i>
+        <input type="text" id="global-search-input" oninput="runGlobalSearch()" placeholder="Cari menu profil, akademik, berita, atau 23 aplikasi..." class="flex-1 text-sm sm:text-base focus:outline-none" />
+        <button onclick="closeSearchModal()" class="p-1.5 rounded-lg hover:bg-slate-100 text-slate-500">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div id="global-search-results" class="max-h-96 overflow-y-auto p-4 space-y-2 text-sm">
+        <p class="text-slate-400 text-center py-6">Ketik kata kunci untuk mencari halaman, berita, atau layanan aplikasi...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       JAVASCRIPT ENGINE (STALE-WHILE-REVALIDATE + DYNAMIC RENDERER)
+       ===================================================================== -->
+  <script>
+    // >>> TEMPELKAN URL WEB APP GOOGLE APPS SCRIPT ANDA DI SINI <<<
+    const GAS_WEB_APP_URL = 'https://script.google.com/macros/s/PASTE_YOUR_WEB_APP_ID_HERE/exec';
+    const LOCAL_CACHE_KEY = 'sman1ba_public_cache_v1';
+
+    // Static Fallback Data (< 100ms First Paint bahkan sebelum API merespons)
+    const FALLBACK_DATA = {
+      pengaturan: {
+        nama_sekolah: 'SMAN 1 BUMI AGUNG',
+        kabupaten: 'Kabupaten Way Kanan, Lampung',
+        slogan: 'Unggul dalam Prestasi, Berkarakter Profil Pelajar Pancasila, Berdaya Saing Digital',
+        npsn: '10806765',
+        akreditasi: 'A (Unggul)',
+        alamat: 'Jl. Pendidikan No. 01, Kec. Bumi Agung, Kab. Way Kanan, Lampung 34763',
+        email: 'info@sman1bumiagung.sch.id',
+        whatsapp: '6281272001234',
+        logo_url: '',
+        kepala_sekolah: 'Drs. H. Ahmad Fauzi, M.Pd.',
+        foto_kepsek: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
+        sambutan_kepsek: 'Assalamu’alaikum Warahmatullahi Wabarakatuh. Puji syukur ke hadirat Allah SWT atas terwujudnya Portal Digital Resmi SMAN 1 Bumi Agung, Kabupaten Way Kanan. Website dan Portal 23 Aplikasi Terpadu ini kami hadirkan sebagai wujud komitmen transformasi digital pendidikan untuk memberikan layanan akademik, kesiswaan, serta informasi publik yang cepat, transparan, dan akurat.',
+        stat_siswa: '785',
+        stat_guru: '54',
+        stat_prestasi: '128',
+        stat_alumni: '3450'
+      },
+      menu: [
+        { ID_Menu: 'MN-01', Menu_Induk: 'PROFIL SEKOLAH', Judul_Submenu: 'Identitas Sekolah', Slug: 'identitas-sekolah', Deskripsi_Singkat: 'Profil lengkap, NPSN, dan legalitas sekolah', Ikon: 'building-2', Urutan: 1, Status: 'Aktif' },
+        { ID_Menu: 'MN-02', Menu_Induk: 'PROFIL SEKOLAH', Judul_Submenu: 'Sejarah SMAN 1 Bumi Agung', Slug: 'sejarah-sekolah', Deskripsi_Singkat: 'Perjalanan dan tonggak sejarah berdirinya sekolah', Ikon: 'history', Urutan: 2, Status: 'Aktif' },
+        { ID_Menu: 'MN-03', Menu_Induk: 'PROFIL SEKOLAH', Judul_Submenu: 'Visi & Misi', Slug: 'visi-misi', Deskripsi_Singkat: 'Arah kebijakan, visi unggulan, dan misi pendidikan', Ikon: 'target', Urutan: 3, Status: 'Aktif' },
+        { ID_Menu: 'MN-04', Menu_Induk: 'PROFIL SEKOLAH', Judul_Submenu: 'Struktur Organisasi', Slug: 'struktur-organisasi', Deskripsi_Singkat: 'Bagan kepemimpinan dan tata kelola manajemen', Ikon: 'network', Urutan: 4, Status: 'Aktif' },
+        { ID_Menu: 'MN-05', Menu_Induk: 'PROFIL SEKOLAH', Judul_Submenu: 'Kepala Sekolah SMAN 1 Bumi Agung', Slug: 'kepala-sekolah', Deskripsi_Singkat: 'Profil pimpinan dan rekam jejak kepala sekolah', Ikon: 'user-check', Urutan: 5, Status: 'Aktif' },
+        { ID_Menu: 'MN-06', Menu_Induk: 'PROFIL SEKOLAH', Judul_Submenu: 'Guru & Tenaga Kependidikan', Slug: 'guru-tendik', Deskripsi_Singkat: 'Direktori pendidik profesional dan staf tata usaha', Ikon: 'users', Urutan: 6, Status: 'Aktif' },
+        { ID_Menu: 'MN-07', Menu_Induk: 'PROFIL SEKOLAH', Judul_Submenu: 'Sarana dan Prasarana', Slug: 'sarana-prasarana', Deskripsi_Singkat: 'Fasilitas ruang kelas, laboratorium, dan perpustakaan', Ikon: 'landmark', Urutan: 7, Status: 'Aktif' },
+        { ID_Menu: 'MN-08', Menu_Induk: 'PROFIL SEKOLAH', Judul_Submenu: 'Alumni SMAN 1 Bumi Agung', Slug: 'alumni', Deskripsi_Singkat: 'Jejaring ikatan alumni dan sebaran lulusan PTN', Ikon: 'graduation-cap', Urutan: 8, Status: 'Aktif' },
+        { ID_Menu: 'MN-09', Menu_Induk: 'AKADEMIK', Judul_Submenu: 'Kurikulum', Slug: 'kurikulum', Deskripsi_Singkat: 'Implementasi Kurikulum Merdeka dan pembelajaran', Ikon: 'book-open', Urutan: 9, Status: 'Aktif' },
+        { ID_Menu: 'MN-10', Menu_Induk: 'AKADEMIK', Judul_Submenu: 'Kalender Akademik', Slug: 'kalender-akademik', Deskripsi_Singkat: 'Jadwal efektif belajar, ujian, dan agenda tahunan', Ikon: 'calendar-days', Urutan: 10, Status: 'Aktif' },
+        { ID_Menu: 'MN-11', Menu_Induk: 'AKADEMIK', Judul_Submenu: 'Jadwal Pelajaran', Slug: 'jadwal-pelajaran', Deskripsi_Singkat: 'Distribusi jam tatap muka kelas X, XI, dan XII', Ikon: 'clock', Urutan: 11, Status: 'Aktif' },
+        { ID_Menu: 'MN-12', Menu_Induk: 'AKADEMIK', Judul_Submenu: 'Program / Jurusan', Slug: 'program-jurusan', Deskripsi_Singkat: 'Peminatan mata pelajaran pilihan & kompetensi', Ikon: 'layers', Urutan: 12, Status: 'Aktif' },
+        { ID_Menu: 'MN-13', Menu_Induk: 'AKADEMIK', Judul_Submenu: 'Penilaian', Slug: 'penilaian', Deskripsi_Singkat: 'Standar asesmen formatif, sumatif, dan ketuntasan', Ikon: 'clipboard-check', Urutan: 13, Status: 'Aktif' },
+        { ID_Menu: 'MN-14', Menu_Induk: 'AKADEMIK', Judul_Submenu: 'Prestasi', Slug: 'prestasi', Deskripsi_Singkat: 'Capaian kejuaraan akademik & non-akademik', Ikon: 'trophy', Urutan: 14, Status: 'Aktif' },
+        { ID_Menu: 'MN-15', Menu_Induk: 'AKADEMIK', Judul_Submenu: 'Bimbingan Konseling', Slug: 'bimbingan-konseling', Deskripsi_Singkat: 'Layanan konseling karir, SNBP/SNBT, dan karakter', Ikon: 'heart-handshake', Urutan: 15, Status: 'Aktif' },
+        { ID_Menu: 'MN-16', Menu_Induk: 'AKADEMIK', Judul_Submenu: 'E-Learning', Slug: 'e-learning', Deskripsi_Singkat: 'Panduan pembelajaran digital terintegrasi LMS', Ikon: 'laptop', Urutan: 16, Status: 'Aktif' },
+        { ID_Menu: 'MN-17', Menu_Induk: 'KESISWAAN', Judul_Submenu: 'Tata Tertib', Slug: 'tata-tertib', Deskripsi_Singkat: 'Pedoman kedisiplinan dan budaya positif siswa', Ikon: 'shield-check', Urutan: 17, Status: 'Aktif' },
+        { ID_Menu: 'MN-18', Menu_Induk: 'KESISWAAN', Judul_Submenu: 'Beasiswa', Slug: 'beasiswa', Deskripsi_Singkat: 'Informasi PIP, beasiswa prestasi, dan bantuan', Ikon: 'award', Urutan: 18, Status: 'Aktif' },
+        { ID_Menu: 'MN-19', Menu_Induk: 'KESISWAAN', Judul_Submenu: 'Pers', Slug: 'pers-sekolah', Deskripsi_Singkat: 'Jurnalistik siswa dan majalah dinding digital', Ikon: 'newspaper', Urutan: 19, Status: 'Aktif' },
+        { ID_Menu: 'MN-20', Menu_Induk: 'KESISWAAN', Judul_Submenu: 'OSIS / MPK', Slug: 'osis-mpk', Deskripsi_Singkat: 'Kepengurusan organisasi siswa & program kerja', Ikon: 'flag', Urutan: 20, Status: 'Aktif' },
+        { ID_Menu: 'MN-21', Menu_Induk: 'KESISWAAN', Judul_Submenu: 'Ekstrakurikuler SMAN 1 Bumi Agung', Slug: 'ekstrakurikuler', Deskripsi_Singkat: 'Pramuka, Paskibra, Rohis, Olahraga, Seni & KIR', Ikon: 'sparkles', Urutan: 21, Status: 'Aktif' },
+        { ID_Menu: 'MN-22', Menu_Induk: 'KESISWAAN', Judul_Submenu: 'Kegiatan Kesiswaan', Slug: 'kegiatan-kesiswaan', Deskripsi_Singkat: 'Dokumentasi LDK, classmeeting & hari besar', Ikon: 'activity', Urutan: 22, Status: 'Aktif' },
+        { ID_Menu: 'MN-23', Menu_Induk: 'HUBUNGI KAMI', Judul_Submenu: 'Pengaduan', Slug: 'pengaduan', Deskripsi_Singkat: 'Layanan aspirasi, saran, dan pengaduan publik', Ikon: 'message-square-warning', Urutan: 23, Status: 'Aktif' },
+        { ID_Menu: 'MN-24', Menu_Induk: 'HUBUNGI KAMI', Judul_Submenu: 'Permohonan Kerja Sama', Slug: 'kerja-sama', Deskripsi_Singkat: 'Pengajuan kemitraan instansi, kampus & DUDI', Ikon: 'handshake', Urutan: 24, Status: 'Aktif' }
+      ],
+      halaman: {},
+      berita: [
+        { ID: 'BRT-001', Tanggal: '2026-11-15', Judul: 'Siswa SMAN 1 Bumi Agung Raih Juara 1 Olimpiade Sains Tingkat Provinsi Lampung', Ringkasan: 'Kontingen OSN SMAN 1 Bumi Agung berhasil mengharumkan nama Kabupaten Way Kanan dengan meraih medali emas.', Isi_Lengkap: '<p>Prestasi membanggakan kembali ditorehkan oleh peserta didik <strong>SMAN 1 Bumi Agung</strong> pada ajang Olimpiade Sains Nasional (OSN) tingkat Provinsi Lampung.</p>', Gambar_URL: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80', Penulis: 'Humas Sekolah' },
+        { ID: 'BRT-002', Tanggal: '2026-11-10', Judul: 'Peluncuran Ekosistem 23 Aplikasi Digital Terpadu SMAN 1 Bumi Agung', Ringkasan: 'Transformasi digital menyeluruh untuk mempermudah layanan akademik siswa, perangkat ajar guru, dan tata usaha.', Isi_Lengkap: '<p>SMAN 1 Bumi Agung resmi meluncurkan Portal 23 Aplikasi Terpadu untuk mendukung digitalisasi sekolah di Kabupaten Way Kanan.</p>', Gambar_URL: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=80', Penulis: 'Tim IT Sekolah' },
+        { ID: 'BRT-003', Tanggal: '2026-11-02', Judul: 'Sosialisasi Seleksi Nasional Penerimaan Mahasiswa Baru (SNPMB) Kelas XII', Ringkasan: 'Bimbingan Konseling bersama alumni perguruan tinggi negeri menggelar pendampingan strategi pemilihan jurusan.', Isi_Lengkap: '<p>Tim Bimbingan Konseling SMAN 1 Bumi Agung menyelenggarakan sosialisasi jalur SNBP dan SNBT bagi seluruh siswa kelas XII.</p>', Gambar_URL: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1000&q=80', Penulis: 'Guru BK' }
+      ],
+      aplikasi: [
+        { ID: 'APP-01', Nama_Aplikasi: 'PPDB', Deskripsi: 'Sistem Penerimaan Murid Baru Online SMAN 1 Bumi Agung', Kategori: 'Siswa & Akademik', Ikon: 'user-plus', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-02', Nama_Aplikasi: 'Pengumuman Kelulusan', Deskripsi: 'Cek status kelulusan kelas XII & unduh SKL digital', Kategori: 'Siswa & Akademik', Ikon: 'graduation-cap', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-03', Nama_Aplikasi: 'LMS', Deskripsi: 'Learning Management System & materi belajar terpadu', Kategori: 'Siswa & Akademik', Ikon: 'book-open-check', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-04', Nama_Aplikasi: 'CBT', Deskripsi: 'Computer Based Test untuk asesmen & ujian sekolah', Kategori: 'Siswa & Akademik', Ikon: 'monitor-check', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-05', Nama_Aplikasi: 'Simulasi TKA', Deskripsi: 'Latihan Tes Kemampuan Akademik & persiapan SNBT', Kategori: 'Siswa & Akademik', Ikon: 'brain-circuit', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-06', Nama_Aplikasi: 'Perpustakaan Digital', Deskripsi: 'Katalog buku digital, e-book, dan literasi sekolah', Kategori: 'Siswa & Akademik', Ikon: 'library', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-07', Nama_Aplikasi: 'Kalender Akademik', Deskripsi: 'Agenda kegiatan belajar, ujian, dan libur semester', Kategori: 'Siswa & Akademik', Ikon: 'calendar-range', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-08', Nama_Aplikasi: 'E-Voting', Deskripsi: 'Pemilihan Ketua OSIS & MPK secara real-time', Kategori: 'Siswa & Akademik', Ikon: 'vote', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-09', Nama_Aplikasi: 'Adm Guru & Guru Wali', Deskripsi: 'Administrasi perangkat ajar, jurnal & buku perwalian', Kategori: 'Guru & Perangkat Ajar', Ikon: 'briefcase', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-10', Nama_Aplikasi: 'E-Raport', Deskripsi: 'Pengolahan nilai Kurikulum Merdeka & rapor digital', Kategori: 'Guru & Perangkat Ajar', Ikon: 'file-spreadsheet', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-11', Nama_Aplikasi: 'Generator Soal', Deskripsi: 'Pembuat naskah soal HOTS otomatis berbasis kisi-kisi', Kategori: 'Guru & Perangkat Ajar', Ikon: 'file-question', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-12', Nama_Aplikasi: 'Generator Soal GForm', Deskripsi: 'Ekspor cepat bank soal ke Google Forms siap ujian', Kategori: 'Guru & Perangkat Ajar', Ikon: 'list-checks', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-13', Nama_Aplikasi: 'Generator LKPD', Deskripsi: 'Penyusun Lembar Kerja Peserta Didik interaktif', Kategori: 'Guru & Perangkat Ajar', Ikon: 'file-pen-line', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-14', Nama_Aplikasi: 'RPM Generator', Deskripsi: 'Generator Rencana Pembelajaran Mendalam / Modul Ajar', Kategori: 'Guru & Perangkat Ajar', Ikon: 'sparkles', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-15', Nama_Aplikasi: 'LJK Scanner', Deskripsi: 'Pemindai Lembar Jawaban Komputer berbasis kamera', Kategori: 'Guru & Perangkat Ajar', Ikon: 'scan-line', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-16', Nama_Aplikasi: 'Smart School Management', Deskripsi: 'Sistem informasi manajemen terpadu tata usaha', Kategori: 'Manajemen & TU', Ikon: 'cpu', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-17', Nama_Aplikasi: 'Otomasi Raport Pendidikan', Deskripsi: 'Analisis indikator & rekomendasi Rapor Pendidikan', Kategori: 'Manajemen & TU', Ikon: 'bar-chart-3', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-18', Nama_Aplikasi: 'Buku Induk', Deskripsi: 'Database induk peserta didik & alumni terintegrasi', Kategori: 'Manajemen & TU', Ikon: 'database', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-19', Nama_Aplikasi: 'Surat Masuk & Keluar', Deskripsi: 'Buku agenda persuratan & disposisi digital TU', Kategori: 'Manajemen & TU', Ikon: 'mail-open', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-20', Nama_Aplikasi: 'Generator Surat', Deskripsi: 'Pembuat surat keterangan siswa & surat tugas otomatis', Kategori: 'Manajemen & TU', Ikon: 'file-badge', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-21', Nama_Aplikasi: 'E-Sarpras (KIB A-F)', Deskripsi: 'Inventarisasi aset tanah, gedung & kartu barang', Kategori: 'Manajemen & TU', Ikon: 'warehouse', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-22', Nama_Aplikasi: 'Aset Digital', Deskripsi: 'Repositori SK, dokumen akreditasi & media sekolah', Kategori: 'Manajemen & TU', Ikon: 'folder-kanban', URL_Aplikasi: '#', Status: 'Aktif' },
+        { ID: 'APP-23', Nama_Aplikasi: 'Arsip Digital', Deskripsi: 'Pengarsipan dokumen administrasi berbasis cloud', Kategori: 'Manajemen & TU', Ikon: 'archive', URL_Aplikasi: '#', Status: 'Aktif' }
+      ]
+    };
+
+    let SITE_STATE = JSON.parse(JSON.stringify(FALLBACK_DATA));
+    let ACTIVE_APP_CATEGORY = 'Semua';
+    let CURRENT_SLUG = null;
+
+    // 1. Inisialisasi Aplikasi dengan Strategi Stale-While-Revalidate
+    document.addEventListener('DOMContentLoaded', () => {
+      // Baca cache lokal jika ada
+      try {
+        const cached = localStorage.getItem(LOCAL_CACHE_KEY);
+        if (cached) {
+          const parsed = JSON.parse(cached);
+          if (parsed && parsed.pengaturan) {
+            SITE_STATE = parsed;
+          }
+        }
+      } catch (e) { console.warn('Local cache skip:', e); }
+
+      renderAll();
+      handleInitialHash();
+
+      // Revalidate dari Google Apps Script di background
+      if (GAS_WEB_APP_URL && !GAS_WEB_APP_URL.includes('PASTE_YOUR_WEB_APP_ID')) {
+        fetch(GAS_WEB_APP_URL)
+          .then(res => res.json())
+          .then(data => {
+            if (data && data.status === 'success') {
+              SITE_STATE = data;
+              localStorage.setItem(LOCAL_CACHE_KEY, JSON.stringify(data));
+              renderAll();
+              if (CURRENT_SLUG) renderSubmenuPage(CURRENT_SLUG);
+            }
+          })
+          .catch(err => console.warn('Menggunakan mode cache/offline:', err));
+      }
+    });
+
+    function renderAll() {
+      applySettings();
+      renderNavigation();
+      renderApps();
+      renderNews();
+      lucide.createIcons();
+    }
+
+    // 2. Terapkan Identitas & Statistik Sekolah
+    function applySettings() {
+      const p = SITE_STATE.pengaturan || {};
+      const name = p.nama_sekolah || 'SMAN 1 BUMI AGUNG';
+      document.title = `${name} — Portal Resmi & 23 Aplikasi Terpadu`;
+
+      setText('header-school-name', name);
+      setText('sidebar-school-name', name);
+      setText('hero-school-name', name);
+      setText('footer-school-name', name);
+      setText('header-school-sub', p.kabupaten || 'Kabupaten Way Kanan, Lampung');
+      setText('topbar-alamat', p.alamat || 'Kec. Bumi Agung, Kab. Way Kanan, Lampung');
+      setText('topbar-npsn', p.npsn || '10806765');
+      setText('topbar-akreditasi', p.akreditasi || 'A');
+      setText('hero-slogan', p.slogan || '');
+      setText('stat-siswa', p.stat_siswa || '785');
+      setText('stat-guru', p.stat_guru || '54');
+      setText('stat-prestasi', p.stat_prestasi || '128');
+      setText('stat-alumni', p.stat_alumni || '3.450+');
+      setText('kepsek-name', p.kepala_sekolah || 'Drs. H. Ahmad Fauzi, M.Pd.');
+      setText('kepsek-message', p.sambutan_kepsek || '');
+      setText('footer-alamat', p.alamat || '');
+      setText('footer-email', p.email || 'info@sman1bumiagung.sch.id');
+
+      if (p.foto_kepsek) {
+        document.getElementById('kepsek-photo').src = convertDriveUrl(p.foto_kepsek);
+      }
+      if (p.logo_url) {
+        const logoUrl = convertDriveUrl(p.logo_url);
+        document.getElementById('header-logo-wrap').innerHTML = `<img src="${logoUrl}" alt="${name}" class="w-full h-full object-contain rounded-xl bg-white p-1" />`;
+      }
+      const waClean = String(p.whatsapp || '6281272001234').replace(/[^0-9]/g, '');
+      const waLink = `https://wa.me/${waClean}`;
+      document.getElementById('topbar-wa').href = waLink;
+      document.getElementById('sidebar-wa-btn').href = waLink;
+      setText('footer-wa-text', '+' + waClean);
+    }
+
+    // 3. Render Navigasi Dinamis (Desktop Floating Mega-Dropdown + Mobile Glassmorphism Accordion)
+    function renderNavigation() {
+      const menus = (SITE_STATE.menu || []).filter(m => String(m.Status).toLowerCase() === 'aktif');
+      const groupsMap = new Map();
+
+      menus.forEach(item => {
+        const parent = String(item.Menu_Induk || 'LAINNYA').trim().toUpperCase();
+        if (!groupsMap.has(parent)) groupsMap.set(parent, []);
+        groupsMap.get(parent).push(item);
+      });
+
+      // A. Desktop Navigation
+      let desktopHtml = `
+        <button onclick="navigateToHome(event)" class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-[#0A3678] hover:bg-slate-100/80 transition">
+          BERANDA
+        </button>
+      `;
+
+      groupsMap.forEach((items, parentTitle) => {
+        const isLastGroup = parentTitle === 'HUBUNGI KAMI';
+        const alignClass = isLastGroup ? 'right-0' : 'left-0';
+
+        desktopHtml += `
+          <div class="relative nav-group">
+            <button class="px-3.5 py-2 rounded-xl text-sm font-semibold text-slate-700 hover:text-[#0A3678] hover:bg-slate-100/80 transition flex items-center gap-1.5">
+              <span>${parentTitle}</span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400 transition-transform duration-200 group-hover:rotate-180"></i>
+            </button>
+
+            <!-- Floating Mega-Menu 2 Kolom -->
+            <div class="mega-dropdown absolute ${alignClass} top-full pt-2.5 w-[540px] z-50">
+              <div class="bg-white rounded-2xl shadow-2xl border border-slate-200/90 p-4 grid grid-cols-2 gap-2">
+                ${items.map(sub => `
+                  <button onclick="openPage('${sub.Slug}')" class="flex items-start gap-3 p-2.5 rounded-xl hover:bg-[#F8FAFC] text-left group/item transition border border-transparent hover:border-slate-200/70">
+                    <div class="w-9 h-9 rounded-lg bg-[#0A3678]/8 text-[#0A3678] group-hover/item:bg-[#0095DA] group-hover/item:text-white flex items-center justify-center shrink-0 transition">
+                      <i data-lucide="${sub.Ikon || 'file-text'}" class="w-4 h-4"></i>
+                    </div>
+                    <div class="min-w-0">
+                      <p class="font-heading font-bold text-xs text-slate-800 group-hover/item:text-[#0A3678] truncate">${sub.Judul_Submenu}</p>
+                      <p class="text-[11px] text-slate-500 line-clamp-2 mt-0.5 leading-snug">${sub.Deskripsi_Singkat || ''}</p>
+                    </div>
+                  </button>
+                `).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      document.getElementById('desktop-nav').innerHTML = desktopHtml;
+
+      // B. Mobile & Tablet Glassmorphism Accordion Sidebar
+      let mobileHtml = `
+        <button onclick="toggleMobileSidebar(false); navigateToHome(event);" class="w-full flex items-center gap-3 px-3.5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-heading font-bold text-sm transition">
+          <i data-lucide="home" class="w-4 h-4 text-[#FACC15]"></i>
+          <span>BERANDA</span>
+        </button>
+      `;
+
+      let idx = 0;
+      groupsMap.forEach((items, parentTitle) => {
+        idx++;
+        const hasActiveChild = items.some(s => s.Slug === CURRENT_SLUG);
+        mobileHtml += `
+          <div class="accordion-item ${hasActiveChild ? 'active' : ''} rounded-xl bg-white/5 border border-white/10 overflow-hidden" id="acc-${idx}">
+            <button onclick="toggleAccordion('acc-${idx}')" class="w-full flex items-center justify-between px-3.5 py-3 text-left font-heading font-bold text-sm text-white hover:bg-white/10 transition">
+              <span class="flex items-center gap-2.5">
+                <i data-lucide="${items[0]?.Ikon || 'folder'}" class="w-4 h-4 text-[#FACC15]"></i>
+                <span>${parentTitle}</span>
+              </span>
+              <i data-lucide="chevron-down" class="w-4 h-4 text-white/70 transition-transform duration-200 ${hasActiveChild ? 'rotate-180' : ''}"></i>
+            </button>
+            <div class="accordion-content">
+              <div class="accordion-inner px-2 pb-2 space-y-1">
+                ${items.map(sub => {
+                  const isActive = sub.Slug === CURRENT_SLUG;
+                  return `
+                    <button onclick="toggleMobileSidebar(false); openPage('${sub.Slug}');"
+                      class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-left text-xs font-medium transition ${isActive ? 'bg-white/20 text-[#FACC15] font-bold border-l-4 border-[#FACC15]' : 'text-white/85 hover:bg-white/10 hover:text-white border-l-4 border-transparent'}">
+                      <i data-lucide="${sub.Ikon || 'chevron-right'}" class="w-3.5 h-3.5 shrink-0 opacity-80"></i>
+                      <span class="truncate">${sub.Judul_Submenu}</span>
+                    </button>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      document.getElementById('mobile-nav-container').innerHTML = mobileHtml;
+    }
+
+    // 4. Render Portal 23 Aplikasi
+    function renderApps() {
+      const allApps = SITE_STATE.aplikasi || [];
+      setText('app-count-badge', allApps.length);
+
+      const keyword = (document.getElementById('app-search-input')?.value || '').toLowerCase().trim();
+      const filtered = allApps.filter(app => {
+        const matchCat = ACTIVE_APP_CATEGORY === 'Semua' || String(app.Kategori).toLowerCase() === ACTIVE_APP_CATEGORY.toLowerCase();
+        const matchKey = !keyword ||
+          String(app.Nama_Aplikasi).toLowerCase().includes(keyword) ||
+          String(app.Deskripsi).toLowerCase().includes(keyword) ||
+          String(app.Kategori).toLowerCase().includes(keyword);
+        return matchCat && matchKey;
+      });
+
+      const grid = document.getElementById('apps-grid');
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="col-span-full text-center py-12 bg-white rounded-2xl border border-slate-200 text-slate-500">Tidak ada aplikasi yang sesuai dengan pencarian Anda.</div>`;
+        return;
+      }
+
+      grid.innerHTML = filtered.map((app, i) => {
+        const status = String(app.Status || 'Aktif');
+        const isAvailable = status.toLowerCase() === 'aktif';
+        const statusBadge = isAvailable
+          ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Aktif</span>`
+          : `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">${status}</span>`;
+
+        const actionTag = isAvailable
+          ? `<a href="${app.URL_Aplikasi || '#'}" target="_blank" rel="noopener" class="mt-4 inline-flex items-center justify-between w-full px-3.5 py-2.5 rounded-xl bg-[#0A3678] group-hover:bg-[#0095DA] text-white font-semibold text-xs transition">
+              <span>Buka Aplikasi</span>
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+            </a>`
+          : `<button disabled class="mt-4 inline-flex items-center justify-between w-full px-3.5 py-2.5 rounded-xl bg-slate-100 text-slate-400 font-semibold text-xs cursor-not-allowed">
+              <span>${status}</span>
+              <i data-lucide="clock" class="w-3.5 h-3.5"></i>
+            </button>`;
+
+        return `
+          <div class="app-card group bg-white rounded-2xl border border-slate-200/90 p-5 flex flex-col justify-between">
+            <div>
+              <div class="flex items-start justify-between gap-2 mb-4">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-[#0A3678] to-[#0095DA] text-white flex items-center justify-center shadow-md group-hover:scale-105 transition">
+                  <i data-lucide="${app.Ikon || 'app-window'}" class="w-6 h-6"></i>
+                </div>
+                ${statusBadge}
+              </div>
+              <span class="text-[11px] font-semibold text-[#0095DA]">${app.Kategori}</span>
+              <h3 class="font-heading font-bold text-base text-[#0A3678] mt-0.5 group-hover:text-[#0095DA] transition">${app.Nama_Aplikasi}</h3>
+              <p class="text-xs text-slate-600 mt-1.5 leading-relaxed line-clamp-2">${app.Deskripsi}</p>
+            </div>
+            ${actionTag}
+          </div>
+        `;
+      }).join('');
+
+      lucide.createIcons();
+    }
+
+    function setAppCategory(cat) {
+      ACTIVE_APP_CATEGORY = cat;
+      document.querySelectorAll('.app-tab').forEach(btn => {
+        if (btn.dataset.cat === cat) {
+          btn.className = 'app-tab active px-4 py-2.5 rounded-xl font-semibold text-xs md:text-sm whitespace-nowrap bg-[#0A3678] text-white shadow-sm transition';
+        } else {
+          btn.className = 'app-tab px-4 py-2.5 rounded-xl font-semibold text-xs md:text-sm whitespace-nowrap bg-white text-slate-600 border border-slate-200 hover:border-[#0095DA] transition';
+        }
+      });
+      renderApps();
+    }
+
+    function filterApps() {
+      renderApps();
+    }
+
+    // 5. Render Berita Terbaru
+    function renderNews() {
+      const list = (SITE_STATE.berita || []).slice(0, 6);
+      const grid = document.getElementById('news-grid');
+
+      grid.innerHTML = list.map(item => {
+        const img = convertDriveUrl(item.Gambar_URL) || 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80';
+        return `
+          <article class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-sm hover:shadow-xl transition flex flex-col justify-between group">
+            <div>
+              <div class="h-48 bg-slate-100 overflow-hidden relative">
+                <img src="${img}" alt="${item.Judul}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" />
+                <span class="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-[#0A3678]/90 backdrop-blur text-white text-[11px] font-semibold">
+                  ${item.Tanggal}
+                </span>
+              </div>
+              <div class="p-5">
+                <p class="text-xs text-[#0095DA] font-semibold mb-1.5">${item.Penulis || 'Humas Sekolah'}</p>
+                <h3 class="font-heading font-bold text-base text-[#0A3678] group-hover:text-[#0095DA] transition line-clamp-2 leading-snug">
+                  ${item.Judul}
+                </h3>
+                <p class="text-xs text-slate-600 mt-2 line-clamp-3 leading-relaxed">${item.Ringkasan}</p>
+              </div>
+            </div>
+            <div class="px-5 pb-5">
+              <button onclick="openNewsDetail('${item.ID}')" class="inline-flex items-center gap-1.5 text-xs font-bold text-[#0A3678] hover:text-[#0095DA] transition">
+                <span>Baca Selengkapnya</span>
+                <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+          </article>
+        `;
+      }).join('');
+    }
+
+    // 6. Navigasi Halaman Dinamis Submenu
+    function openPage(slug) {
+      CURRENT_SLUG = slug;
+      window.location.hash = 'page/' + slug;
+
+      document.getElementById('view-home').classList.add('hidden');
+      document.getElementById('view-page').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      renderSubmenuPage(slug);
+      renderNavigation(); // Update active highlight in mobile sidebar
+      lucide.createIcons();
+    }
+
+    function renderSubmenuPage(slug) {
+      const menuObj = (SITE_STATE.menu || []).find(m => m.Slug === slug) || { Menu_Induk: 'INFORMASI', Judul_Submenu: slug };
+      const pageObj = (SITE_STATE.halaman || {})[slug] || {
+        Judul_Halaman: menuObj.Judul_Submenu,
+        Isi_Konten: `<p>Informasi resmi mengenai <strong>${menuObj.Judul_Submenu}</strong> di <strong>SMAN 1 Bumi Agung</strong>, Kabupaten Way Kanan, Lampung.</p><p>${menuObj.Deskripsi_Singkat || ''}</p>`,
+        Gambar_URL: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=1200&q=80',
+        Updated_At: '2026-11-19',
+        Updated_By: 'Admin Sekolah'
+      };
+
+      setText('page-breadcrumb-parent', menuObj.Menu_Induk);
+      setText('page-breadcrumb-title', pageObj.Judul_Halaman);
+      setText('page-category-pill', menuObj.Menu_Induk);
+      setText('page-title', pageObj.Judul_Halaman);
+      setText('page-updated-at', pageObj.Updated_At || '-');
+      setText('page-updated-by', pageObj.Updated_By || 'Admin');
+      document.getElementById('page-content').innerHTML = pageObj.Isi_Konten;
+
+      const imgWrap = document.getElementById('page-hero-img-wrap');
+      if (pageObj.Gambar_URL) {
+        imgWrap.classList.remove('hidden');
+        document.getElementById('page-hero-img').src = convertDriveUrl(pageObj.Gambar_URL);
+      } else {
+        imgWrap.classList.add('hidden');
+      }
+
+      // Tampilkan Form Pengaduan / Kerja Sama jika berada di halaman tersebut
+      const contactWrap = document.getElementById('contact-form-wrapper');
+      if (slug.includes('pengaduan') || slug.includes('kerja-sama')) {
+        contactWrap.classList.remove('hidden');
+        const isKerjaSama = slug.includes('kerja-sama');
+        document.getElementById('contact-jenis').value = isKerjaSama ? 'Permohonan Kerja Sama' : 'Pengaduan';
+        setText('contact-form-heading', isKerjaSama ? 'Formulir Permohonan Kerja Sama' : 'Formulir Pengaduan & Aspirasi Publik');
+      } else {
+        contactWrap.classList.add('hidden');
+      }
+
+      // Render Menu Terkait di Sidebar Halaman
+      setText('sidebar-related-title', menuObj.Menu_Induk);
+      const siblings = (SITE_STATE.menu || []).filter(m => m.Menu_Induk === menuObj.Menu_Induk && String(m.Status).toLowerCase() === 'aktif');
+      document.getElementById('sidebar-related-links').innerHTML = siblings.map(s => {
+        const active = s.Slug === slug;
+        return `
+          <button onclick="openPage('${s.Slug}')" class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-left text-xs font-semibold transition ${active ? 'bg-[#0A3678] text-white shadow-sm' : 'text-slate-600 hover:bg-slate-100 hover:text-[#0A3678]'}">
+            <span class="flex items-center gap-2 truncate">
+              <i data-lucide="${s.Ikon || 'chevron-right'}" class="w-3.5 h-3.5 shrink-0 ${active ? 'text-[#FACC15]' : 'text-[#0095DA]'}"></i>
+              <span class="truncate">${s.Judul_Submenu}</span>
+            </span>
+            <i data-lucide="chevron-right" class="w-3.5 h-3.5 shrink-0 opacity-60"></i>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function navigateToHome(e) {
+      if (e) e.preventDefault();
+      CURRENT_SLUG = null;
+      history.replaceState(null, '', window.location.pathname);
+      document.getElementById('view-page').classList.add('hidden');
+      document.getElementById('view-home').classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      renderNavigation();
+      lucide.createIcons();
+    }
+
+    function navigateToPortal(e) {
+      if (e) e.preventDefault();
+      CURRENT_SLUG = null;
+      document.getElementById('view-page').classList.add('hidden');
+      document.getElementById('view-home').classList.remove('hidden');
+      const target = document.getElementById('portal-aplikasi');
+      if (target) target.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function handleInitialHash() {
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#page/')) {
+        const slug = hash.replace('#page/', '').trim();
+        if (slug) openPage(slug);
+      }
+    }
+
+    // 7. Kirim Pesan Pengaduan / Kerja Sama
+    async function submitPublicContact(e) {
+      e.preventDefault();
+      const btn = document.getElementById('contact-submit-btn');
+      btn.disabled = true;
+      btn.innerHTML = `<span>Mengirim pesan...</span>`;
+
+      const payload = {
+        action: 'submit_contact',
+        jenis: document.getElementById('contact-jenis').value,
+        nama: document.getElementById('contact-nama').value,
+        kontak: document.getElementById('contact-kontak').value,
+        subjek: document.getElementById('contact-subjek').value,
+        pesan: document.getElementById('contact-pesan').value
+      };
+
+      try {
+        const res = await fetch(GAS_WEB_APP_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify(payload)
+        });
+        const json = await res.json();
+        alert(json.message || 'Pesan berhasil dikirim!');
+        document.getElementById('public-contact-form').reset();
+      } catch (err) {
+        alert('Terima kasih! Pesan tercatat (pastikan URL Web App GAS sudah terpasang untuk penyimpanan otomatis).');
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML
