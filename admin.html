@@ -918,11 +918,45 @@
       window.location.replace('login.html');
     }
 
-    async function syncFromBackend(notify) {
-      setSyncStatus('Menyinkronkan...', 'amber');
+    async function fetchWithTimeout(url, options = {}, timeoutMs = 15000) {
+      const controller = new AbortController();
+      const timer = setTimeout(() => controller.abort(), timeoutMs);
       try {
-        const res = await fetch(`${GAS_WEB_APP_URL}?mode=admin&token=${encodeURIComponent(ADMIN_TOKEN)}`);
-        const data = await res.json();
+        return await fetch(url, { ...options, signal: controller.signal });
+      } finally {
+        clearTimeout(timer);
+      }
+    }
+
+    async function syncFromBackend(notify) {
+      const refreshBtn = document.getElementById('btn-refresh-sync');
+      const refreshIcon = refreshBtn?.querySelector('svg, i');
+      if (refreshBtn) refreshBtn.disabled = true;
+      if (refreshIcon) refreshIcon.classList.add('animate-spin');
+      setSyncStatus('Menyinkronkan...', 'amber');
+
+      try {
+        let data = null;
+
+        // Jalur 1: HTTP GET (?mode=admin)
+        try {
+          const getUrl = `${GAS_WEB_APP_URL}?mode=admin&token=${encodeURIComponent(ADMIN_TOKEN)}&_ts=${Date.now()}`;
+          const resGet = await fetchWithTimeout(getUrl, { method: 'GET' }, 12000);
+          data = await resGet.json();
+        } catch (getErr) {
+          console.warn('GET sync fallback ke POST:', getErr);
+        }
+
+        // Jalur 2 (Fallback): HTTP POST (action: sync_admin) jika GET terblokir/gagal
+        if (!data || data.status !== 'success') {
+          const resPost = await fetchWithTimeout(GAS_WEB_APP_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ action: 'sync_admin', token: ADMIN_TOKEN })
+          }, 15000);
+          data = await resPost.json();
+        }
+
         if (data && data.status === 'success') {
           ADMIN_STATE = {
             ...ADMIN_STATE,
@@ -934,30 +968,60 @@
           renderAdminAll();
           setSyncStatus(`${CURRENT_ADMIN_USER.role || 'Admin'} • Terhubung`, 'emerald');
           if (notify) showToast('Data terbaru berhasil disinkronkan dari Google Sheets.');
+        } else {
+          const errMsg = (data && data.message) ? data.message : 'Respon server tidak valid.';
+          setSyncStatus('Gagal Sinkron', 'rose');
+          showToast('Sinkronisasi gagal: ' + errMsg, 'error');
         }
       } catch (err) {
         setSyncStatus('Cache Lokal', 'amber');
-        if (notify) showToast('Gagal menghubungi server. Menampilkan data cache lokal.', 'error');
+        if (notify) {
+          showToast('Koneksi ke Google Apps Script gagal/timeout. Periksa deployment Web App.', 'error');
+        }
+      } finally {
+        if (refreshBtn) refreshBtn.disabled = false;
+        const iconNow = document.getElementById('btn-refresh-sync')?.querySelector('svg, i');
+        if (iconNow) iconNow.classList.remove('animate-spin');
       }
     }
 
     async function postToGas(payload) {
       localStorage.setItem(LOCAL_CACHE_KEY, JSON.stringify(ADMIN_STATE));
-      const res = await fetch(GAS_WEB_APP_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-        body: JSON.stringify({ ...payload, token: ADMIN_TOKEN })
-      });
-      return await res.json();
+      setSyncStatus('Menyimpan...', 'amber');
+      try {
+        const res = await fetchWithTimeout(GAS_WEB_APP_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ ...payload, token: ADMIN_TOKEN })
+        }, 15000);
+        const json = await res.json();
+        if (json && json.status === 'success') {
+          setSyncStatus(`${CURRENT_ADMIN_USER.role || 'Admin'} • Terhubung`, 'emerald');
+        } else {
+          setSyncStatus('Gagal Simpan', 'rose');
+        }
+        return json;
+      } catch (err) {
+        setSyncStatus('Cache Lokal', 'amber');
+        throw err;
+      }
     }
 
     function setSyncStatus(text, color) {
       const pill = document.getElementById('sync-status-pill');
       const label = document.getElementById('sync-status-text');
+      const dot = pill?.querySelector('span:first-child');
       label.textContent = text;
-      pill.className = color === 'emerald'
-        ? 'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200'
-        : 'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200';
+      if (color === 'emerald') {
+        pill.className = 'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200';
+        if (dot) dot.className = 'w-2 h-2 rounded-full bg-emerald-500';
+      } else if (color === 'rose') {
+        pill.className = 'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-rose-50 text-rose-700 border border-rose-200';
+        if (dot) dot.className = 'w-2 h-2 rounded-full bg-rose-500';
+      } else {
+        pill.className = 'inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-700 border border-amber-200';
+        if (dot) dot.className = 'w-2 h-2 rounded-full bg-amber-500 animate-pulse';
+      }
     }
 
     function showToast(message, type = 'success') {
@@ -1198,8 +1262,9 @@
       closeModal('menu-form-modal');
       renderAdminMenuList();
       selectMenuToEdit(slug);
-      await postToGas({ action: 'save_menu', data: menuObj });
-      showToast('Data submenu berhasil disimpan.');
+      const res = await postToGas({ action: 'save_menu', data: menuObj });
+      if (res && res.status === 'success') showToast(res.message || 'Data submenu berhasil disimpan.');
+      else showToast((res && res.message) || 'Gagal menyimpan ke server.', 'error');
     }
 
     async function deleteMenuItem(idMenu) {
@@ -1283,8 +1348,9 @@
       }
       closeModal('app-form-modal');
       renderAdminAll();
-      await postToGas({ action: 'save_aplikasi', data: item });
-      showToast('Data aplikasi berhasil disimpan.');
+      const res = await postToGas({ action: 'save_aplikasi', data: item });
+      if (res && res.status === 'success') showToast(res.message || 'Data aplikasi berhasil disimpan.');
+      else showToast((res && res.message) || 'Gagal menyimpan ke server.', 'error');
     }
 
     async function deleteAppItem(id) {
@@ -1360,8 +1426,9 @@
       }
       closeModal('news-form-modal');
       renderAdminAll();
-      await postToGas({ action: 'save_berita', data: item });
-      showToast('Berita sekolah berhasil dipublikasikan.');
+      const res = await postToGas({ action: 'save_berita', data: item });
+      if (res && res.status === 'success') showToast(res.message || 'Berita sekolah berhasil dipublikasikan.');
+      else showToast((res && res.message) || 'Gagal menyimpan ke server.', 'error');
     }
 
     async function deleteNewsItem(id) {
@@ -1507,8 +1574,9 @@
 
       closeModal('user-form-modal');
       renderAdminUsersTable();
-      await postToGas({ action: 'save_user', data: userObj });
-      showToast('Akun pengguna berhasil disimpan.');
+      const res = await postToGas({ action: 'save_user', data: userObj });
+      if (res && res.status === 'success') showToast(res.message || 'Akun pengguna berhasil disimpan.');
+      else showToast((res && res.message) || 'Gagal menyimpan ke server.', 'error');
     }
 
     async function deleteUserItem(username) {
