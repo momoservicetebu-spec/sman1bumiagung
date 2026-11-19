@@ -91,7 +91,7 @@
 </head>
 <body class="bg-white text-ink antialiased pb-20 md:pb-0">
 
-  <!-- =====================================================================
+<!-- =====================================================================
        STICKY GLASS HEADER & DESKTOP FLOATING MEGA-MENU
        ===================================================================== -->
   <header id="main-header" class="sticky top-0 z-40 bg-white/90 backdrop-blur-xl border-b border-slate-200/80 transition-all duration-300">
@@ -107,8 +107,8 @@
             <i data-lucide="phone-call" class="w-3.5 h-3.5 text-[#FACC15]"></i> Layanan Informasi
           </a>
           <span class="text-white/30">|</span>
-          <a href="admin.html" class="hover:text-[#FACC15] transition flex items-center gap-1 font-medium">
-            <i data-lucide="lock" class="w-3.5 h-3.5 text-[#FACC15]"></i> Login Admin
+          <a href="login.html" data-admin-link class="hover:text-[#FACC15] transition flex items-center gap-1 font-medium">
+            <i data-lucide="lock" class="w-3.5 h-3.5 text-[#FACC15]"></i> <span class="admin-link-label">Login Admin</span>
           </a>
         </div>
       </div>
@@ -154,7 +154,7 @@
             <span>Portal 23 Aplikasi</span>
           </a>
 
-          <a href="admin.html" title="Login Admin / Super Admin" class="hidden xl:flex items-center justify-center w-10 h-10 rounded-xl bg-slate-100 hover:bg-[#0A3678] text-slate-600 hover:text-white transition">
+          <a href="login.html" data-admin-link title="Login Admin / Super Admin" class="hidden xl:flex items-center justify-center w-10 h-10 rounded-xl bg-slate-100 hover:bg-[#0A3678] text-slate-600 hover:text-white transition">
             <i data-lucide="lock" class="w-4 h-4"></i>
           </a>
 
@@ -167,8 +167,7 @@
       </div>
     </div>
   </header>
-
-  <!-- =====================================================================
+<!-- =====================================================================
        MODERN GLASSMORPHISM SLIDE-OVER SIDEBAR (MOBILE & TABLET)
        ===================================================================== -->
   <div id="mobile-sidebar-backdrop" onclick="toggleMobileSidebar(false)" class="fixed inset-0 z-50 bg-slate-950/60 backdrop-blur-sm hidden opacity-0 transition-opacity duration-300"></div>
@@ -211,9 +210,9 @@
           <i data-lucide="message-circle" class="w-4 h-4"></i>
           <span>WhatsApp Sekolah</span>
         </a>
-        <a href="admin.html" class="py-2.5 px-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white/90 text-xs font-medium flex items-center gap-1.5 transition" title="Login Admin">
+        <a href="login.html" data-admin-link class="py-2.5 px-3.5 rounded-xl bg-white/10 hover:bg-white/20 text-white/90 text-xs font-medium flex items-center gap-1.5 transition" title="Login Admin">
           <i data-lucide="lock" class="w-3.5 h-3.5 text-[#FACC15]"></i>
-          <span>Admin</span>
+          <span class="admin-link-label">Admin</span>
         </a>
       </div>
     </div>
@@ -541,8 +540,7 @@
       </div>
     </div>
   </main>
-
-  <!-- =====================================================================
+<!-- =====================================================================
        FOOTER RESMI SEKOLAH
        ===================================================================== -->
   <footer class="bg-[#0A3678] text-white pt-14 pb-24 md:pb-12 border-t border-white/10">
@@ -583,7 +581,11 @@
             <li class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-[#FACC15]"></i> <span id="footer-email">info@sman1bumiagung.sch.id</span></li>
             <li class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-[#FACC15]"></i> <span id="footer-wa-text">+62 812-7200-1234</span></li>
             <li><button onclick="openPage('pengaduan')" class="hover:text-[#FACC15] transition flex items-center gap-2"><i data-lucide="message-square" class="w-4 h-4 text-[#FACC15]"></i> Layanan Pengaduan</button></li>
-            <li><a href="admin.html" class="hover:text-[#FACC15] transition flex items-center gap-2 pt-1 text-white/60"><i data-lucide="lock" class="w-3.5 h-3.5"></i> Dashboard Admin</a></li>
+            <li>
+              <a href="login.html" data-admin-link class="hover:text-[#FACC15] transition flex items-center gap-2 pt-1 text-white/60">
+                <i data-lucide="lock" class="w-3.5 h-3.5"></i> <span class="admin-link-label">Dashboard Admin</span>
+              </a>
+            </li>
           </ul>
         </div>
       </div>
@@ -1156,7 +1158,7 @@
         alert('Terima kasih! Pesan tercatat (pastikan URL Web App GAS sudah terpasang untuk penyimpanan otomatis).');
       } finally {
         btn.disabled = false;
-    btn.innerHTML = `<i data-lucide="send" class="w-4 h-4"></i><span>Kirim Pesan Sekarang</span>`;
+        btn.innerHTML = `<i data-lucide="send" class="w-4 h-4"></i><span>Kirim Pesan Sekarang</span>`;
         if (window.lucide) lucide.createIcons();
       }
     }
@@ -1167,19 +1169,22 @@
       const backdrop = document.getElementById('mobile-sidebar-backdrop');
       if (!sidebar) return;
 
-      const isClosed =
-        sidebar.classList.contains('hidden') ||
-        sidebar.classList.contains('-translate-x-full') ||
-        sidebar.classList.contains('translate-x-full');
+      const isClosed = sidebar.classList.contains('translate-x-full');
       const shouldOpen = typeof show === 'boolean' ? show : isClosed;
 
       if (shouldOpen) {
-        sidebar.classList.remove('hidden', '-translate-x-full', 'translate-x-full');
-        if (backdrop) backdrop.classList.remove('hidden');
+        sidebar.classList.remove('translate-x-full');
+        if (backdrop) {
+          backdrop.classList.remove('hidden');
+          requestAnimationFrame(() => backdrop.classList.remove('opacity-0'));
+        }
         document.body.classList.add('overflow-hidden');
       } else {
-        sidebar.classList.add('-translate-x-full');
-        if (backdrop) backdrop.classList.add('hidden');
+        sidebar.classList.add('translate-x-full');
+        if (backdrop) {
+          backdrop.classList.add('opacity-0');
+          setTimeout(() => backdrop.classList.add('hidden'), 300);
+        }
         document.body.classList.remove('overflow-hidden');
       }
     }
@@ -1218,8 +1223,7 @@
       document.getElementById('modal-news-body').innerHTML =
         item.Isi_Lengkap || `<p>${item.Ringkasan || ''}</p>`;
 
-      const modal = document.getElementById('news-modal');
-      modal.classList.remove('hidden');
+      document.getElementById('news-modal').classList.remove('hidden');
       document.body.classList.add('overflow-hidden');
       if (window.lucide) lucide.createIcons();
     }
@@ -1232,7 +1236,7 @@
 
     function openAllNewsModal() {
       const allNews = SITE_STATE.berita || [];
-      if (allNews.length === 0) return;
+      if (!allNews.length) return;
 
       document.getElementById('modal-news-img').src =
         'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80';
@@ -1378,7 +1382,7 @@
       if (window.lucide) lucide.createIcons();
     }
 
-    // 11. Helper Utilitas & Sinkronisasi Hash URL
+    // 11. Helper Utilitas, Sinkronisasi Sesi Admin & Hash URL
     function setText(id, value) {
       const el = document.getElementById(id);
       if (el) el.textContent = value;
@@ -1393,6 +1397,22 @@
       }
       return str;
     }
+
+    (function syncAdminNavLinks() {
+      const hasSession =
+        sessionStorage.getItem('sman1ba_admin_session_v1') ||
+        localStorage.getItem('sman1ba_admin_session_v1');
+
+      if (hasSession) {
+        document.querySelectorAll('[data-admin-link]').forEach(link => {
+          link.href = 'admin.html';
+          link.title = 'Buka Dashboard Admin';
+        });
+        document.querySelectorAll('.admin-link-label').forEach(el => {
+          el.textContent = 'Dashboard Aktif';
+        });
+      }
+    })();
 
     window.addEventListener('hashchange', () => {
       const hash = window.location.hash;
