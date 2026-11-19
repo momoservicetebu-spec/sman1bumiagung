@@ -1156,4 +1156,261 @@
         alert('Terima kasih! Pesan tercatat (pastikan URL Web App GAS sudah terpasang untuk penyimpanan otomatis).');
       } finally {
         btn.disabled = false;
-        btn.innerHTML
+    btn.innerHTML = `<i data-lucide="send" class="w-4 h-4"></i><span>Kirim Pesan Sekarang</span>`;
+        if (window.lucide) lucide.createIcons();
+      }
+    }
+
+    // 8. Kontrol Sidebar Mobile & Accordion
+    function toggleMobileSidebar(show) {
+      const sidebar = document.getElementById('mobile-sidebar');
+      const backdrop = document.getElementById('mobile-sidebar-backdrop');
+      if (!sidebar) return;
+
+      const isClosed =
+        sidebar.classList.contains('hidden') ||
+        sidebar.classList.contains('-translate-x-full') ||
+        sidebar.classList.contains('translate-x-full');
+      const shouldOpen = typeof show === 'boolean' ? show : isClosed;
+
+      if (shouldOpen) {
+        sidebar.classList.remove('hidden', '-translate-x-full', 'translate-x-full');
+        if (backdrop) backdrop.classList.remove('hidden');
+        document.body.classList.add('overflow-hidden');
+      } else {
+        sidebar.classList.add('-translate-x-full');
+        if (backdrop) backdrop.classList.add('hidden');
+        document.body.classList.remove('overflow-hidden');
+      }
+    }
+
+    function toggleAccordion(id) {
+      const target = document.getElementById(id);
+      if (!target) return;
+      const isOpen = target.classList.contains('active');
+
+      document.querySelectorAll('.accordion-item').forEach(el => {
+        el.classList.remove('active');
+        const arrow = el.querySelector('[data-lucide="chevron-down"]');
+        if (arrow) arrow.classList.remove('rotate-180');
+      });
+
+      if (!isOpen) {
+        target.classList.add('active');
+        const arrow = target.querySelector('[data-lucide="chevron-down"]');
+        if (arrow) arrow.classList.add('rotate-180');
+      }
+    }
+
+    // 9. Modal Detail Berita & Arsip Berita
+    function openNewsDetail(id) {
+      const item = (SITE_STATE.berita || []).find(b => String(b.ID) === String(id));
+      if (!item) return;
+
+      const img =
+        convertDriveUrl(item.Gambar_URL) ||
+        'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80';
+
+      document.getElementById('modal-news-img').src = img;
+      setText('modal-news-date', item.Tanggal || '-');
+      setText('modal-news-author', item.Penulis || 'Humas Sekolah');
+      setText('modal-news-title', item.Judul || '');
+      document.getElementById('modal-news-body').innerHTML =
+        item.Isi_Lengkap || `<p>${item.Ringkasan || ''}</p>`;
+
+      const modal = document.getElementById('news-modal');
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeNewsModal() {
+      const modal = document.getElementById('news-modal');
+      if (modal) modal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function openAllNewsModal() {
+      const allNews = SITE_STATE.berita || [];
+      if (allNews.length === 0) return;
+
+      document.getElementById('modal-news-img').src =
+        'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80';
+      setText('modal-news-date', `${allNews.length} Publikasi`);
+      setText('modal-news-author', 'Arsip Berita SMAN 1 Bumi Agung');
+      setText('modal-news-title', 'Semua Berita & Pengumuman Sekolah');
+
+      document.getElementById('modal-news-body').innerHTML = `
+        <div class="space-y-3">
+          ${allNews
+            .map(
+              b => `
+            <div onclick="openNewsDetail('${b.ID}')" class="p-3.5 rounded-2xl border border-slate-200 hover:border-[#0095DA] hover:bg-slate-50 cursor-pointer transition">
+              <div class="text-[11px] font-semibold text-[#0095DA]">${b.Tanggal} • ${b.Penulis || 'Humas Sekolah'}</div>
+              <h4 class="font-heading font-bold text-sm text-[#0A3678] mt-0.5">${b.Judul}</h4>
+              <p class="text-xs text-slate-600 mt-1 line-clamp-2">${b.Ringkasan || ''}</p>
+            </div>
+          `
+            )
+            .join('')}
+        </div>
+      `;
+
+      document.getElementById('news-modal').classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // 10. Modal Pencarian Cepat Global
+    function openSearchModal() {
+      const modal = document.getElementById('search-modal');
+      const input = document.getElementById('global-search-input');
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      document.body.classList.add('overflow-hidden');
+      if (input) {
+        input.value = '';
+        setTimeout(() => input.focus(), 50);
+      }
+      runGlobalSearch();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeSearchModal() {
+      const modal = document.getElementById('search-modal');
+      if (modal) modal.classList.add('hidden');
+      document.body.classList.remove('overflow-hidden');
+    }
+
+    function runGlobalSearch() {
+      const input = document.getElementById('global-search-input');
+      const resultsEl = document.getElementById('global-search-results');
+      if (!input || !resultsEl) return;
+
+      const q = input.value.toLowerCase().trim();
+      if (!q) {
+        resultsEl.innerHTML = `<p class="text-slate-400 text-center py-6">Ketik kata kunci untuk mencari halaman, berita, atau layanan aplikasi...</p>`;
+        return;
+      }
+
+      const menuMatches = (SITE_STATE.menu || [])
+        .filter(
+          m =>
+            String(m.Status).toLowerCase() === 'aktif' &&
+            (String(m.Judul_Submenu).toLowerCase().includes(q) ||
+              String(m.Deskripsi_Singkat).toLowerCase().includes(q) ||
+              String(m.Menu_Induk).toLowerCase().includes(q))
+        )
+        .slice(0, 5);
+
+      const appMatches = (SITE_STATE.aplikasi || [])
+        .filter(
+          a =>
+            String(a.Nama_Aplikasi).toLowerCase().includes(q) ||
+            String(a.Deskripsi).toLowerCase().includes(q) ||
+            String(a.Kategori).toLowerCase().includes(q)
+        )
+        .slice(0, 5);
+
+      const newsMatches = (SITE_STATE.berita || [])
+        .filter(
+          b =>
+            String(b.Judul).toLowerCase().includes(q) ||
+            String(b.Ringkasan).toLowerCase().includes(q)
+        )
+        .slice(0, 4);
+
+      if (!menuMatches.length && !appMatches.length && !newsMatches.length) {
+        resultsEl.innerHTML = `<p class="text-slate-500 text-center py-6">Tidak ditemukan hasil untuk "<strong>${q}</strong>".</p>`;
+        return;
+      }
+
+      let html = '';
+
+      if (menuMatches.length) {
+        html += `<p class="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-1 pt-1">Halaman & Menu</p>`;
+        html += menuMatches
+          .map(
+            m => `
+          <button onclick="closeSearchModal(); openPage('${m.Slug}');" class="w-full text-left p-3 rounded-xl hover:bg-slate-50 border border-slate-100 flex items-center justify-between gap-3 transition">
+            <div>
+              <span class="text-[10px] font-bold text-[#0095DA] uppercase">${m.Menu_Induk}</span>
+              <p class="font-heading font-bold text-sm text-[#0A3678]">${m.Judul_Submenu}</p>
+              <p class="text-xs text-slate-500 line-clamp-1">${m.Deskripsi_Singkat || ''}</p>
+            </div>
+            <i data-lucide="arrow-right" class="w-4 h-4 text-slate-400 shrink-0"></i>
+          </button>
+        `
+          )
+          .join('');
+      }
+
+      if (appMatches.length) {
+        html += `<p class="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-1 pt-2">Portal Aplikasi</p>`;
+        html += appMatches
+          .map(
+            a => `
+          <a href="${a.URL_Aplikasi || '#portal-aplikasi'}" ${a.URL_Aplikasi && a.URL_Aplikasi !== '#' ? 'target="_blank" rel="noopener"' : 'onclick="closeSearchModal(); navigateToPortal(event);"'} class="block p-3 rounded-xl hover:bg-slate-50 border border-slate-100 transition">
+            <span class="text-[10px] font-bold text-emerald-600 uppercase">${a.Kategori}</span>
+            <p class="font-heading font-bold text-sm text-[#0A3678]">${a.Nama_Aplikasi}</p>
+            <p class="text-xs text-slate-500 line-clamp-1">${a.Deskripsi || ''}</p>
+          </a>
+        `
+          )
+          .join('');
+      }
+
+      if (newsMatches.length) {
+        html += `<p class="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-1 pt-2">Berita Sekolah</p>`;
+        html += newsMatches
+          .map(
+            b => `
+          <button onclick="closeSearchModal(); openNewsDetail('${b.ID}');" class="w-full text-left p-3 rounded-xl hover:bg-slate-50 border border-slate-100 transition">
+            <span class="text-[10px] font-semibold text-slate-400">${b.Tanggal}</span>
+            <p class="font-heading font-bold text-sm text-[#0A3678] line-clamp-1">${b.Judul}</p>
+          </button>
+        `
+          )
+          .join('');
+      }
+
+      resultsEl.innerHTML = html;
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // 11. Helper Utilitas & Sinkronisasi Hash URL
+    function setText(id, value) {
+      const el = document.getElementById(id);
+      if (el) el.textContent = value;
+    }
+
+    function convertDriveUrl(url) {
+      if (!url) return '';
+      const str = String(url).trim();
+      const match = str.match(/\/d\/([a-zA-Z0-9_-]+)/) || str.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+      if (str.includes('drive.google.com') && match && match[1]) {
+        return `https://lh3.googleusercontent.com/d/${match[1]}=s1200`;
+      }
+      return str;
+    }
+
+    window.addEventListener('hashchange', () => {
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#page/')) {
+        const slug = hash.replace('#page/', '').trim();
+        if (slug && slug !== CURRENT_SLUG) openPage(slug);
+      } else if (!hash && CURRENT_SLUG) {
+        navigateToHome();
+      }
+    });
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') {
+        closeNewsModal();
+        closeSearchModal();
+        toggleMobileSidebar(false);
+      }
+    });
+  </script>
+</body>
+</html>
