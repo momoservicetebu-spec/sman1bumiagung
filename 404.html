@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 Halaman Tidak Ditemukan — SMAN 1 BUMI AGUNG</title>
+
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+            sans: ['"Inter"', 'sans-serif'],
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    h1, h2, h3, .font-heading { font-family: 'Plus Jakarta Sans', sans-serif; }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-[#0A3678] via-[#0A3678] to-[#0095DA] text-white flex items-center justify-center p-4 relative overflow-hidden">
+
+  <!-- Pola Dekoratif -->
+  <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 24px 24px;"></div>
+  <div class="absolute -top-24 -right-24 w-96 h-96 rounded-full bg-[#0095DA]/30 blur-3xl pointer-events-none"></div>
+  <div class="absolute -bottom-24 -left-24 w-80 h-80 rounded-full bg-[#FACC15]/15 blur-3xl pointer-events-none"></div>
+
+  <main class="relative z-10 max-w-xl w-full bg-white/10 backdrop-blur-2xl border border-white/20 rounded-3xl p-8 sm:p-10 text-center shadow-2xl space-y-6">
+    <!-- Logo Sekolah -->
+    <div class="inline-flex items-center gap-3 px-4 py-2 rounded-2xl bg-white/10 border border-white/15">
+      <svg class="w-7 h-7 shrink-0" viewBox="0 0 64 64" fill="none">
+        <path d="M32 4L56 14V31C56 46.5 45.6 56.8 32 60C18.4 56.8 8 46.5 8 31V14L32 4Z" fill="#0A3678"/>
+        <path d="M32 8L52 16.5V31C52 44.2 43.2 53.1 32 56C20.8 53.1 12 44.2 12 31V16.5L32 8Z" fill="#0095DA"/>
+        <path d="M32 16L41 25L32 46L23 25L32 16Z" fill="#FACC15"/>
+      </svg>
+      <div class="text-left">
+        <p class="font-heading font-extrabold text-xs tracking-tight text-white">SMAN 1 BUMI AGUNG</p>
+        <p class="text-[10px] text-[#FACC15]">Kabupaten Way Kanan, Lampung</p>
+      </div>
+    </div>
+
+    <!-- Angka 404 -->
+    <div>
+      <span class="inline-block font-heading font-extrabold text-7xl sm:text-8xl tracking-tight text-[#FACC15] drop-shadow">
+        404
+      </span>
+      <h1 class="font-heading font-extrabold text-2xl sm:text-3xl text-white mt-2">
+        Halaman Tidak Ditemukan
+      </h1>
+      <p class="text-sm text-white/80 mt-2 leading-relaxed">
+        Maaf, alamat halaman atau tautan layanan yang Anda tuju tidak tersedia, telah dipindahkan, atau sedang diperbarui oleh administrator sekolah.
+      </p>
+    </div>
+
+    <!-- Tombol Navigasi Cepat -->
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+      <a href="index.html" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-[#FACC15] hover:bg-[#EAB308] text-[#0F172A] font-heading font-bold text-sm shadow-lg flex items-center justify-center gap-2 transition">
+        <i data-lucide="home" class="w-4 h-4"></i>
+        <span>Kembali ke Beranda</span>
+      </a>
+      <a href="index.html#portal-aplikasi" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white/15 hover:bg-white/25 border border-white/25 text-white font-semibold text-sm flex items-center justify-center gap-2 transition">
+        <i data-lucide="layout-grid" class="w-4 h-4 text-[#FACC15]"></i>
+        <span>Portal 23 Aplikasi</span>
+      </a>
+    </div>
+
+    <p class="text-xs text-white/60 pt-2">
+      Otomatis dialihkan ke beranda dalam <strong id="redirect-countdown" class="text-[#FACC15]">10</strong> detik...
+    </p>
+  </main>
+
+  <script>
+    lucide.createIcons();
+    let seconds = 10;
+    const counterEl = document.getElementById('redirect-countdown');
+    const timer = setInterval(() => {
+      seconds--;
+      if (counterEl) counterEl.textContent = seconds;
+      if (seconds <= 0) {
+        clearInterval(timer);
+        window.location.href = 'index.html';
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
