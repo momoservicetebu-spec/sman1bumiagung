@@ -6,7 +6,7 @@ Sistem Informasi Website Sekolah dan Launcher **23 Aplikasi Digital Terpadu** un
 
 URL Web App Google Apps Script yang terkonfigurasi pada `index.html`, `login.html`, dan `admin.html`:
 ```text
-https://script.google.com/macros/s/AKfycbwbGrBHzKP7oFu2-fHzQ478kxVpuf1FdXlpc6Tiq9YLJQl3nrnSpAlpYJu4e_m3Wq_4/exec
+https://script.google.com/macros/s/AKfycbw397Xhh415MSyr9Dkx1iuQWhNODzXUUeJdmZmbne9U6k0DJtBgs_kIUy4lwk4oj1A2/exec/exec
 ```
 
 ## Struktur Folder Proyek
